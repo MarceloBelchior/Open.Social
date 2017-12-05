@@ -7,7 +7,7 @@
   <ItemGroup>
     <Folder Include="Model\Auth\" />
     <Folder Include="Model\Store\" />
-    <Folder Include="Model\TimeSheet\" />
+    <Folder Include="Interface\" />
   </ItemGroup>
 
 </Project>
