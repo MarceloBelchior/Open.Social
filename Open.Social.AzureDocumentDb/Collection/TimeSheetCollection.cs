@@ -1,4 +1,5 @@
-﻿using Open.Social.AzureDocumentDb.Model;
+﻿using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,4 @@ namespace Open.Social.AzureDocumentDb.Collection
     }
 }
 
-    {
-    }
-}
+    
