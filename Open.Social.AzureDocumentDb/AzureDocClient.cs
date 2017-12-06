@@ -8,9 +8,9 @@ namespace Open.Social.AzureDocumentDb
     public class AzureDocClient : IAzureDocClient
     {
         private DocumentClient _client;
-        private readonly documentDbConfig _documentDbConfig;
+        private readonly DocumentDbConfig _documentDbConfig;
 
-        public AzureDocClient(documentDbConfig documentDbConfig)
+        public AzureDocClient(DocumentDbConfig documentDbConfig)
         {
             _documentDbConfig = documentDbConfig;
         }

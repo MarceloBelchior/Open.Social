@@ -6,18 +6,25 @@ import { Http } from '@angular/http';
     templateUrl: './fetchdata.component.html'
 })
 export class FetchDataComponent {
-    public forecasts: WeatherForecast[];
+    public forecasts: TimeSheet[];
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result.json() as WeatherForecast[];
+            this.forecasts = result.json() as TimeSheet[];
         }, error => console.error(error));
     }
 }
 
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface TimeSheet {
+    IniDay: any;
+        EndDay: any;
+        BreakFestIni :any; 
+        BreakFestEnd: any;
+        ExtendInit:any;
+        ExtendEnd: any;
+        CliendId: any;
+        UserId: any;
+        ProjectId: any;
+        Comments: any;
+        reg: any;
 }

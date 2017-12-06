@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Open.Social.Core.Model.config
 {
-   public class documentDbConfig
+   public class DocumentDbConfig
     {
         
             public string Endpoint { get; set; }

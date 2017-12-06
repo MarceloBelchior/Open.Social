@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Open.Social.Core.Model.TimeSheet
 {
-   public class TimeSheet : EntidadeBase
+    public class TimeSheet : EntidadeBase
     {
         public DateTime IniDay { get; set; }
         public DateTime EndDay { get; set; }
@@ -24,5 +24,5 @@ namespace Open.Social.Core.Model.TimeSheet
             return this;
         }
     }
-    }
 }
+

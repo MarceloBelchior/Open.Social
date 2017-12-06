@@ -4,12 +4,11 @@ using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.AzureDocumentDb.Manager;
 using Open.Social.Core.Interface;
 using Open.Social.Core.Model.config;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Open.Social.AzureDocumentDb.IoC
 {
-    public class AutofacModule : Autofac.Module
+    public class AutofacModule : Module
     {
         private const string TimeSheetCollection = "TimeSheetCollection";
         private const string UserCollection = "UserCollection";
@@ -25,7 +24,7 @@ namespace Open.Social.AzureDocumentDb.IoC
                 var docClient = c.Resolve<IAzureDocClient>();
                 docClient.InitializeClient(); //Initialize the client before IAzureDocDatabase is available
 
-                return new AzureDocDatabase(docClient, c.Resolve<documentDbConfig>());
+                return new AzureDocDatabase(docClient, c.Resolve<DocumentDbConfig>());
             }).As<IAzureDocDatabase>().SingleInstance();
 
             //Register a Task<IAzureDocDatabase> that will run it's InitializeDatabaseAsync method

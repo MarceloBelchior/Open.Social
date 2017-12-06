@@ -1,8 +1,5 @@
 ﻿using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.AzureDocumentDb.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Open.Social.AzureDocumentDb

@@ -2,9 +2,6 @@
 using Microsoft.Azure.Documents.Client;
 using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.Core.Model.config;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Open.Social.AzureDocumentDb
@@ -12,10 +9,10 @@ namespace Open.Social.AzureDocumentDb
     public class AzureDocDatabase : IAzureDocDatabase
     {
         private readonly IAzureDocClient _docClient;
-        private readonly documentDbConfig _documentDbConfig;
+        private readonly DocumentDbConfig _documentDbConfig;
         private Database _documentDatabase;
 
-        public AzureDocDatabase(IAzureDocClient docClient, documentDbConfig documentDbConfig)
+        public AzureDocDatabase(IAzureDocClient docClient, DocumentDbConfig documentDbConfig)
         {
             _docClient = docClient;
             _documentDbConfig = documentDbConfig;
