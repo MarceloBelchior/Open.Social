@@ -1,5 +1,6 @@
 ﻿using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.AzureDocumentDb.Model;
+using Open.Social.Core.Interface;
 using Open.Social.Core.Model.TimeSheet;
 using System;
 using System.Collections.Generic;

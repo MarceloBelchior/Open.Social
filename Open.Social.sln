@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Core", "Open.So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.EF", "Open.Social.EF\Open.Social.EF.csproj", "{CE0099EE-2BEC-44DE-941A-A53263335328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Social.AzureDocumentDb", "Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj", "{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.AzureDocumentDb", "Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj", "{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Social.Service", "Open.Social.Service\Open.Social.Service.csproj", "{D6BD00F3-A645-410D-836F-8BBE7878F4C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,4 +16,14 @@ namespace Open.Social.Core.Interface
         Task DeleteAsync(Guid cartId);
 
     }
+
+    public interface ITimeSheetService
+    {
+        IList<Core.Model.TimeSheet.TimeSheet> GetAll();
+        TimeSheet GetById(Guid id);
+        Task CreateAsync(Core.Model.TimeSheet.TimeSheet entity);
+        Task UpdateAsync(Core.Model.TimeSheet.TimeSheet entity);
+        Task DeleteAsync(Guid cartId);
+
+    }
 }

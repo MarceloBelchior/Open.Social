@@ -1,14 +1,15 @@
 ﻿using Autofac;
+using Open.Social.AzureDocumentDb.Collection;
 using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Manager;
+using Open.Social.Core.Interface;
 using Open.Social.Core.Model.config;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Open.Social.AzureDocumentDb.IoC
 {
-   public class AutofacModule : Module
+    public class AutofacModule : Autofac.Module
     {
         private const string TimeSheetCollection = "TimeSheetCollection";
         private const string UserCollection = "UserCollection";
@@ -33,26 +34,26 @@ namespace Open.Social.AzureDocumentDb.IoC
             //Register a Task<ProductCollection> that will resolve Task<IAzureDocDatabase> and Initialize the collection
             builder.Register(async c =>
             {
-                var collection = new Times ProductCollection(await c.Resolve<Task<IAzureDocDatabase>>(), ProductCollectionName);
+                var collection = new TimeSheetCollection(await c.Resolve<Task<IAzureDocDatabase>>(), TimeSheetCollection);
                 await collection.InitializeAsync();
 
                 return collection;
             });
 
             //Register a Task<CartCollection> that will resolve Task<IAzureDocDatabase> and Initialize the collection
-            builder.Register(async c =>
-            {
-                var collection = new CartCollection(await c.Resolve<Task<IAzureDocDatabase>>(), CartCollectionName);
-                await collection.InitializeAsync();
+            //builder.Register(async c =>
+            //{
+            //    var collection = new CartCollection(await c.Resolve<Task<IAzureDocDatabase>>(), CartCollectionName);
+            //    await collection.InitializeAsync();
 
-                return collection;
-            });
+            //    return collection;
+            //});
 
-            builder.Register(c => c.Resolve<Task<ProductCollection>>().Result).As<IProductCollection>().SingleInstance();
-            builder.Register(c => c.Resolve<Task<CartCollection>>().Result).As<ICartCollection>().SingleInstance();
+            builder.Register(c => c.Resolve<Task<TimeSheetCollection>>().Result).As<ITimeSheetCollection>().SingleInstance();
+            //builder.Register(c => c.Resolve<Task<CartCollection>>().Result).As<ICartCollection>().SingleInstance();
 
-            builder.RegisterType<ProductStorageManager>().As<IProductStorage>().SingleInstance();
-            builder.RegisterType<CartStorageManager>().As<ICartStorage>().SingleInstance();
+            builder.RegisterType<TimeSheetManagerStore>().As<ITimeSheetManagerStore>().SingleInstance();
+            //builder.RegisterType<CartStorageManager>().As<ICartStorage>().SingleInstance();
         }
     }
 }

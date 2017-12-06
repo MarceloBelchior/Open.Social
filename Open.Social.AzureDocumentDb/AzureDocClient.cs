@@ -1,5 +1,4 @@
 ﻿using System;
-//using Core.Models.Config;
 using Microsoft.Azure.Documents.Client;
 using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.Core.Model.config;
