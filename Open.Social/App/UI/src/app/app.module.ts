@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TimeSheetComponent
+    AppComponent
+    
   ],
   imports: [
     BrowserModule
