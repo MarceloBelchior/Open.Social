@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.EF", "Open.Soci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.AzureDocumentDb", "Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj", "{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Social.Service", "Open.Social.Service\Open.Social.Service.csproj", "{D6BD00F3-A645-410D-836F-8BBE7878F4C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Service", "Open.Social.Service\Open.Social.Service.csproj", "{D6BD00F3-A645-410D-836F-8BBE7878F4C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{1FA70AD2-96D0-488F-8081-3673AC94E678}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persist", "Persist", "{544725FA-591E-4868-940C-27534E5B1043}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188} = {13FA474A-9D68-4E73-B7BD-FA6930DA0B80}
+		{CE0099EE-2BEC-44DE-941A-A53263335328} = {544725FA-591E-4868-940C-27534E5B1043}
+		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225} = {544725FA-591E-4868-940C-27534E5B1043}
+		{D6BD00F3-A645-410D-836F-8BBE7878F4C0} = {1FA70AD2-96D0-488F-8081-3673AC94E678}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC8F0D18-2AC1-4DBC-98DE-D85665E16298}

@@ -35,6 +35,12 @@ namespace Open.Social.Controllers
             //});
         }
 
+        [HttpPost("SetTimeSheet")]
+        public async Task SetTimeSheet(TimeSheet entity)
+        {
+            await _timeSheetManager.CreateAsync(entity);
+        }
+
         public class WeatherForecast
         {
             public string DateFormatted { get; set; }

@@ -17,11 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Content Remove="ClientApp\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj" />
     <ProjectReference Include="..\Open.Social.Core\Open.Social.Core.csproj" />
     <ProjectReference Include="..\Open.Social.Service\Open.Social.Service.csproj" />
