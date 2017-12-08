@@ -1,33 +1,22 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="Trade4B">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trade4B - Social Business Network - Beta 0.0.0.1</title>
-    <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
     <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
-    <!-- /global stylesheets -->
-    <!-- Core JS files -->
-    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-    <!-- /core JS files -->
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/app.js"></script>
-    <script type="text/javascript" src="assets/js/pages/login.js"></script>
-    <!-- /theme JS files -->
+    <link href="assets/toaster/loader.min.css" rel="stylesheet" />
+    <link href="assets/toaster/toastr.css" rel="stylesheet" />    
 </head>
 <body class="login-container bg-slate-800">
     <!-- Page container -->
-    <div class="page-container">
+    <div class="page-container" ng-controller="AuthenticateController">
         <!-- Page content -->
         <div class="page-content">
             <!-- Main content -->
@@ -35,7 +24,7 @@
                 <!-- Content area -->
                 <div class="content">
                     <!-- Advanced login -->
-                    <form action="index.html">
+                    <form>
                         <div class="panel panel-body login-form">
                             <div class="text-center">
                                 <div class="icon-object border-warning-400 text-warning-400"><i class="icon-people"></i></div>
@@ -67,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn bg-blue btn-block">Login <i class="icon-circle-right2 position-right"></i></button>
+                                <button type="submit" class="btn bg-blue btn-block" ng-click="Submit()">Login <i class="icon-circle-right2 position-right"></i></button>
                             </div>
                             <div class="content-divider text-muted form-group"><span>ou solicite acesso pelos canais em sua empresa</span></div>
                             <ul class="list-inline form-group list-inline-condensed text-center">
@@ -89,6 +78,37 @@
         </div>
         <!-- /page content -->
     </div>
+    <!-- Core JS files -->
+    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="assets/toaster/toastr.js"></script>
+
+
+    <script src="~/assets/js/angular/angular.min.js"></script>
+    <script src="~/assets/js/angular/angular-animate.min.js"></script>
+    <script src="~/assets/js/angular/angular-aria.min.js"></script>
+    <script src="~/assets/js/angular/angular-cookies.min.js"></script>
+    <script src="~/assets/js/angular/angular-loader.min.js"></script>
+    <script src="~/assets/js/angular/angular-message-format.min.js"></script>
+    <script src="~/assets/js/angular/angular-messages.min.js"></script>
+    <script src="~/assets/js/angular/angular-parse-ext.min.js"></script>
+    <script src="~/assets/js/angular/angular-resource.min.js"></script>
+    <script src="~/assets/js/angular/angular-route.min.js"></script>
+    <script src="~/assets/js/angular/angular-sanitize.min.js"></script>
+    <script src="~/assets/js/angular/angular-scenario.js"></script>
+    <script src="~/assets/js/angular/angular-touch.min.js"></script>
+    <script src="~/assets/js/angular-extension/loading-bar.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/app.js"></script>
+    <script type="text/javascript" src="assets/js/pages/login.js"></script>
+    <!-- /theme JS files -->
+    <script src="App/OpenSquare.js"></script>
+    <script src="App/Controller/AuthenticateController.js"></script>
+    <script src="App/Service/AuthenticateService.js"></script>
     <!-- /page container -->
 </body>
 </html>

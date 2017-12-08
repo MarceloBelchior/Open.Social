@@ -296,3 +296,4 @@ bower_components
 *.jfm
 
 /WebApp/dist
+/Painel/Properties/PublishProfiles
