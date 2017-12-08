@@ -14,5 +14,13 @@ namespace Painel.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [Route("Autenticacao")]
+        public async Task Autenticacao(object entity)
+        {
+            //    await _timeSheetManager.CreateAsync(entity);
+        }
+
     }
 }

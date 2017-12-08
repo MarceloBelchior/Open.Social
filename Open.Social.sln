@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social", "Open.Social\Open.Social.csproj", "{B6FDF622-ED4A-48D8-99D0-CAFEBB88EB06}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Core", "Open.Social.Core\Open.Social.Core.csproj", "{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.EF", "Open.Social.EF\Open.Social.EF.csproj", "{CE0099EE-2BEC-44DE-941A-A53263335328}"
@@ -19,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persist", "Persist", "{5447
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Painel", "Painel\Painel.csproj", "{23EFE244-6F2D-4992-B92B-7D8A87636321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Painel", "Painel\Painel.csproj", "{23EFE244-6F2D-4992-B92B-7D8A87636321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Social.Utils", "Open.Social.Utils\Open.Social.Utils.csproj", "{1C482609-791C-4432-88D4-394BB0117D25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6FDF622-ED4A-48D8-99D0-CAFEBB88EB06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6FDF622-ED4A-48D8-99D0-CAFEBB88EB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6FDF622-ED4A-48D8-99D0-CAFEBB88EB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6FDF622-ED4A-48D8-99D0-CAFEBB88EB06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C482609-791C-4432-88D4-394BB0117D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C482609-791C-4432-88D4-394BB0117D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C482609-791C-4432-88D4-394BB0117D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C482609-791C-4432-88D4-394BB0117D25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +60,7 @@ Global
 		{CE0099EE-2BEC-44DE-941A-A53263335328} = {544725FA-591E-4868-940C-27534E5B1043}
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225} = {544725FA-591E-4868-940C-27534E5B1043}
 		{D6BD00F3-A645-410D-836F-8BBE7878F4C0} = {1FA70AD2-96D0-488F-8081-3673AC94E678}
+		{1C482609-791C-4432-88D4-394BB0117D25} = {13FA474A-9D68-4E73-B7BD-FA6930DA0B80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC8F0D18-2AC1-4DBC-98DE-D85665E16298}

@@ -5,8 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="package.Txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="package.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +25,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\App\Directive\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj" />
+    <ProjectReference Include="..\Open.Social.Core\Open.Social.Core.csproj" />
+    <ProjectReference Include="..\Open.Social.Service\Open.Social.Service.csproj" />
   </ItemGroup>
 
 </Project>
