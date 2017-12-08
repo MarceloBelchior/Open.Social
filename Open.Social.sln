@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social", "Open.Social\Open.Social.csproj", "{B6FDF622-ED4A-48D8-99D0-CAFEBB88EB06}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persist", "Persist", "{544725FA-591E-4868-940C-27534E5B1043}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Painel", "Painel\Painel.csproj", "{23EFE244-6F2D-4992-B92B-7D8A87636321}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6BD00F3-A645-410D-836F-8BBE7878F4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
