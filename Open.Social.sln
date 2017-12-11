@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social", "Open.Social\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Core", "Open.Social.Core\Open.Social.Core.csproj", "{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.EF", "Open.Social.EF\Open.Social.EF.csproj", "{CE0099EE-2BEC-44DE-941A-A53263335328}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.AzureDocumentDb", "Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj", "{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Service", "Open.Social.Service\Open.Social.Service.csproj", "{D6BD00F3-A645-410D-836F-8BBE7878F4C0}"
@@ -19,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persist", "Persist", "{5447
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Painel", "Painel\Painel.csproj", "{23EFE244-6F2D-4992-B92B-7D8A87636321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Painel", "Painel\Painel.csproj", "{23EFE244-6F2D-4992-B92B-7D8A87636321}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.EF", "Open.Social.EF\Open.Social.EF.csproj", "{D6E94946-C628-4347-B61D-01BAD50A4551}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,6 @@ Global
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE0099EE-2BEC-44DE-941A-A53263335328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE0099EE-2BEC-44DE-941A-A53263335328}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE0099EE-2BEC-44DE-941A-A53263335328}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE0099EE-2BEC-44DE-941A-A53263335328}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,15 +47,19 @@ Global
 		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23EFE244-6F2D-4992-B92B-7D8A87636321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E94946-C628-4347-B61D-01BAD50A4551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E94946-C628-4347-B61D-01BAD50A4551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E94946-C628-4347-B61D-01BAD50A4551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E94946-C628-4347-B61D-01BAD50A4551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3EE82454-A2A4-4B8D-80C8-0A7ECC9FB188} = {13FA474A-9D68-4E73-B7BD-FA6930DA0B80}
-		{CE0099EE-2BEC-44DE-941A-A53263335328} = {544725FA-591E-4868-940C-27534E5B1043}
 		{EF91F5C5-95C3-4CA4-A15D-0CB5A6130225} = {544725FA-591E-4868-940C-27534E5B1043}
 		{D6BD00F3-A645-410D-836F-8BBE7878F4C0} = {1FA70AD2-96D0-488F-8081-3673AC94E678}
+		{D6E94946-C628-4347-B61D-01BAD50A4551} = {544725FA-591E-4868-940C-27534E5B1043}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC8F0D18-2AC1-4DBC-98DE-D85665E16298}
