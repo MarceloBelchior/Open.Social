@@ -16,6 +16,8 @@ namespace Open.Social.Core.EF.SessionManager
         {
             return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
         }
+        public DbSet<Model.User.User> User { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Core.Model.User.User>(c =>
