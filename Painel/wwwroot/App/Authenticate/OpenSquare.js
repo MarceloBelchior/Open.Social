@@ -7,9 +7,10 @@
 
     var application = angular.module('Trade4B', ['ngRoute', 'ngCookies', 'chieffancypants.loadingBar', 'ngAnimate']);
 
-     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', { templateUrl: '/Login/Login', controller: 'AuthenticateController' });
+        $routeProvider.when('/Register', { templateUrl: '/Login/Register', controller: 'AuthenticateController' });
         $routeProvider.otherwise({ redirectTo: '/404' });
         $locationProvider.html5Mode(false);
         $locationProvider.hashPrefix = '#';

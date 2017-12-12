@@ -15,6 +15,9 @@
         $scope.Registrar = function () {
             toastr.warning("Função desabilitada.")
         }
+        $scope.Register = function () {
+            $window.location = "/Register";
+        }
 
     }
     AuthenticateController.$inject = injectParams;

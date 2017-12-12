@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Painel.Controllers
 {
-    [Authorize]
+
     public class HomeController : Controller
     {
         public IActionResult Index()

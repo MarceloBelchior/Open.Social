@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Utils", "Open.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Core.EF", "Open.Social.Core.EF\Open.Social.Core.EF.csproj", "{9552D30C-A557-4410-953F-4C06F4F73037}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social", "Open.Social\Open.Social.csproj", "{C458D501-B4EC-4822-A513-092D974D60B5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{9552D30C-A557-4410-953F-4C06F4F73037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9552D30C-A557-4410-953F-4C06F4F73037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9552D30C-A557-4410-953F-4C06F4F73037}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C458D501-B4EC-4822-A513-092D974D60B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C458D501-B4EC-4822-A513-092D974D60B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C458D501-B4EC-4822-A513-092D974D60B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C458D501-B4EC-4822-A513-092D974D60B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
