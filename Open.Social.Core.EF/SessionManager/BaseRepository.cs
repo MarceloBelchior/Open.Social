@@ -10,6 +10,8 @@ using System.Text;
 
 namespace Open.Social.Core.EF.SessionManager
 {
+   
+
     public class BaseRepository<TEntity> : IDisposable where TEntity : class, new()
     {
         protected DBOpen Context;

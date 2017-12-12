@@ -51,7 +51,7 @@ namespace Open.Social.Core.EF.SessionManager
             //    b.ToTable("Posts");
             //});
         }
-        //public DbSet<OpenSquare.Model.TimeSheet.TimeSheet> TimeSheet { get; set; }
+        
 
     }
 }

@@ -9,7 +9,7 @@
 
      application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/', { templateUrl: '/Login/Index', controller: 'AuthenticateController' });
+        $routeProvider.when('/', { templateUrl: '/Login/Login', controller: 'AuthenticateController' });
         $routeProvider.otherwise({ redirectTo: '/404' });
         $locationProvider.html5Mode(false);
         $locationProvider.hashPrefix = '#';

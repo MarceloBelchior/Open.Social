@@ -10,6 +10,7 @@ namespace Open.Social.Service.IoC
             //Using AutoActivate to populate our products since IStartable order is arbitrary
 //            builder.RegisterType<ProductPopulateService>().AsSelf().AutoActivate();
             builder.RegisterType<NoSQL.TimeSheetService>().As<Core.Interface.ITimeSheetService>().SingleInstance();
+            builder.RegisterType<Persist.UserService>().As<Core.Interface.IUserService>().SingleInstance();
         }
 
 

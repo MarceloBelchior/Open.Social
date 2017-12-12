@@ -8,9 +8,17 @@ namespace Open.Social.Core.Interface
 {
   public  interface IUserManagerStore
     {
-        void SaveOrUpdate(Model.TimeSheet.TimeSheet timesheet);
-        ICollection<Model.TimeSheet.TimeSheet> Consult(Expression<Func<Model.TimeSheet.TimeSheet, bool>> expression);
-        void Remove(int timesheetId);
-        Model.TimeSheet.TimeSheet SelectById(int TimeSheetId);
+        void SaveOrUpdate(User entity);
+        IEnumerable<User> Consult(Expression<Func<User, bool>> expression);
+        void Remove(User entidade);
+        User SelectById(User entidade);
+    }
+
+    public interface IUserService
+    {
+        void SaveOrUpdate(User entity);
+        IEnumerable<User> Consult(Expression<Func<User, bool>> expression);
+        void Remove(User entidade);
+        User SelectById(User entidade);
     }
 }
