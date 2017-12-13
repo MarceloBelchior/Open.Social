@@ -7,11 +7,12 @@
 
     var application = angular.module('Trade4B', ['ngRoute', 'ngCookies', 'chieffancypants.loadingBar', 'ngAnimate']);
 
-  
+
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', { templateUrl: '/Login/Index', controller: 'AuthenticateController' });
-        $routeProvider.when('/Extract', { templateUrl: '/Home/Extract', controller: 'ExtractController' });
+
+        $routeProvider.when('/Extract', { templateUrl: '/Home/Extract', controller: 'ExtractController', authorize: true });
         $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index', controller: 'TimeSheetController' });
         $routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
         $routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
@@ -25,6 +26,26 @@
         $locationProvider.html5Mode(false);
         $locationProvider.hashPrefix = '#';
     }]);
+
+    application.run(['$rootScope', '$location', function ($rootScope, $location) {
+        $rootScope.$on('$routeChangeStart', function (evt, to, from) {
+            if (to.authorize === true) {
+                to.resolve = to.resolve || {};
+                if (!to.resolve.authorizationResolver) {
+                    to.resolve.authorizationResolver = ["authservice", function (authservice) {
+                        return authservice.authorize();
+                    }];
+                }
+            }
+        });
+        $rootScope.$on('$rootChangeError', function (evt, to, from, error) {
+            if (error instanceof AuthorizationError) {
+                $location.path('./login').search('returnTo', to.originalPath);
+            }
+        });
+    }
+    ]);
+
     application.config(function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = true;
     })
