@@ -6,11 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="package.Txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="package.txt" />
+    <Content Include="wwwroot\node_modules\angular-animate.min.js" />
+    <Content Include="wwwroot\node_modules\angular-aria.min.js" />
+    <Content Include="wwwroot\node_modules\angular-cookies.min.js" />
+    <Content Include="wwwroot\node_modules\angular-loader.min.js" />
+    <Content Include="wwwroot\node_modules\angular-message-format.min.js" />
+    <Content Include="wwwroot\node_modules\angular-messages.min.js" />
+    <Content Include="wwwroot\node_modules\angular-parse-ext.min.js" />
+    <Content Include="wwwroot\node_modules\angular-resource.min.js" />
+    <Content Include="wwwroot\node_modules\angular-route.min.js" />
+    <Content Include="wwwroot\node_modules\angular-sanitize.min.js" />
+    <Content Include="wwwroot\node_modules\angular.min.js" />
+    <Content Include="wwwroot\node_modules\bootstrap-theme.min.css" />
+    <Content Include="wwwroot\node_modules\bootstrap.min.css" />
+    <Content Include="wwwroot\node_modules\bootstrap.min.js" />
+    <Content Include="wwwroot\node_modules\glyphicons-halflings-regular.eot" />
+    <Content Include="wwwroot\node_modules\glyphicons-halflings-regular.svg" />
+    <Content Include="wwwroot\node_modules\glyphicons-halflings-regular.ttf" />
+    <Content Include="wwwroot\node_modules\glyphicons-halflings-regular.woff" />
+    <Content Include="wwwroot\node_modules\glyphicons-halflings-regular.woff2" />
+    <Content Include="wwwroot\node_modules\jquery.min.js" />
+    <Content Include="wwwroot\node_modules\loading-bar.min.js" />
+    <Content Include="wwwroot\node_modules\toastr.min.css" />
+    <Content Include="wwwroot\node_modules\toastr.min.js" />
   </ItemGroup>
 
   <ItemGroup>
