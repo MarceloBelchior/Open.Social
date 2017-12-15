@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Painel.Controllers
 {
+    
     [AllowAnonymous]
     public class LoginController : Controller
     {

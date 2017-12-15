@@ -11,7 +11,6 @@
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', { templateUrl: '/Login/Index', controller: 'AuthenticateController' });
-
         $routeProvider.when('/Extract', { templateUrl: '/Home/Extract', controller: 'ExtractController', authorize: true });
         $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index', controller: 'TimeSheetController' });
         $routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });

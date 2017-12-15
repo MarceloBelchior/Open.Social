@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\App\Directive\" />
+    <Folder Include="wwwroot\app\Directive\" />
   </ItemGroup>
 
   <ItemGroup>

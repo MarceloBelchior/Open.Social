@@ -36,6 +36,8 @@ namespace Painel
                     .RequireAuthenticatedUser().Build());
             });
 
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Login/Index");
+            
 
             services.AddOptions();
             // Add framework services.
@@ -79,11 +81,15 @@ namespace Painel
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
+
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+            app.UseAuthentication();
+
+
         }
     }
 }

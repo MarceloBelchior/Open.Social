@@ -24,24 +24,16 @@
         // Intercept http calls.
         $provide.factory('httpAuthenticationResponseInterceptor', function ($q) {
             return {
-                // On request failure
                 requestError: function (rejection) {
-                    // Return the promise rejection.
                     return $q.reject(rejection);
                 },
-
-                // On response failture
                 responseError: function (rejection) {
-
                     if (rejection.status == 401) {
                         window.location = "/404";
                     }
-                    // Return the promise rejection.
                     return $q.reject(rejection);
                 }
             };
         });
     });
-
-
 }());

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="Trade4B">
+<html lang="pt-br" ng-app="Trade4B">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,52 +7,44 @@
     <title>Trade4B - Social Business Network - Beta 0.0.0.1</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
     <link href="assets/toaster/loader.min.css" rel="stylesheet" />
-
-
-    <link href="~/npm/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/npm/toastr.min.css" rel="stylesheet" />
-
-
+    <link href="assets/toaster/toastr.css" rel="stylesheet" />
 </head>
 <body class="login-container bg-slate-800">
     <!-- Page container -->
     <div ng-view></div>
     <!-- Core JS files -->
-    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+
+
+    <script src="~/node_modules/jquery.min.js"></script>
+    <script src="~/node_modules/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-    <script type="text/javascript" src="assets/toaster/toastr.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
 
 
-    <script src="~/assets/js/angular/angular.min.js"></script>
-    <script src="~/assets/js/angular/angular-animate.min.js"></script>
-    <script src="~/assets/js/angular/angular-aria.min.js"></script>
-    <script src="~/assets/js/angular/angular-cookies.min.js"></script>
-    <script src="~/assets/js/angular/angular-loader.min.js"></script>
-    <script src="~/assets/js/angular/angular-message-format.min.js"></script>
-    <script src="~/assets/js/angular/angular-messages.min.js"></script>
-    <script src="~/assets/js/angular/angular-parse-ext.min.js"></script>
-    <script src="~/assets/js/angular/angular-resource.min.js"></script>
-    <script src="~/assets/js/angular/angular-route.min.js"></script>
-    <script src="~/assets/js/angular/angular-sanitize.min.js"></script>
-    <script src="~/assets/js/angular/angular-scenario.js"></script>
-    <script src="~/assets/js/angular/angular-touch.min.js"></script>
-    <script src="~/assets/js/angular-extension/loading-bar.js"></script>
-    <!-- /core JS files -->
-    <!-- Theme JS files -->
-    @*<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>*@
-    @*<script type="text/javascript" src="assets/js/core/app.js"></script>*@
-    @*<script type="text/javascript" src="assets/js/pages/login.js"></script>*@
-    <!-- /theme JS files -->
-    @*<script src="App/Authenticate/OpenSquare.js"></script>*@
-    <script src="~/App/OpenSquare.js"></script>
-    <script src="~/App/Controller/AuthenticateController.js"></script>
-    <script src="~/App/Service/AuthenticateService.js"></script>
-    <!-- /page container -->
+    <script src="~/node_modules/toastr.min.js"></script>
+    <script src="~/node_modules/angular.min.js"></script>
+    <script src="~/node_modules/angular-animate.min.js"></script>
+    <script src="~/node_modules/angular-aria.min.js"></script>
+    <script src="~/node_modules/angular-cookies.min.js"></script>
+    <script src="~/node_modules/angular-loader.min.js"></script>
+    <script src="~/node_modules/angular-message-format.min.js"></script>
+    <script src="~/node_modules/angular-messages.min.js"></script>
+    <script src="~/node_modules/angular-parse-ext.min.js"></script>
+    <script src="~/node_modules/angular-resource.min.js"></script>
+    <script src="~/node_modules/angular-route.min.js"></script>
+    <script src="~/node_modules/angular-sanitize.min.js"></script>
+    <script src="~/node_modules/loading-bar.min.js"></script>
+
+
+    <script src="App/Authenticate/OpenSquare.js"></script>
+    <script src="App/Controller/AuthenticateController.js"></script>
+    <script src="App/Service/AuthenticateService.js"></script>
+
 </body>
 </html>
