@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Painel.Controllers
+namespace Painel.Areas.Controllers
 {
     
     [AllowAnonymous]
+    [Area("OAuth")]
+    [Route("/[controller]/[action]")]
     public class LoginController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -24,8 +27,8 @@ namespace Painel.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("Autenticacao")]
+        //[HttpPost]
+        //[Route("Autenticacao")]
         public async Task Autenticacao(object entity)
         {
             //    await _timeSheetManager.CreateAsync(entity);

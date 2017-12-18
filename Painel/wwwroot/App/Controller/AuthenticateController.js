@@ -16,7 +16,7 @@
             toastr.warning("Função desabilitada.")
         }
         $scope.Register = function () {
-            $window.location = "/Register";
+            $window.location = "/#/Register";
         }
 
     }

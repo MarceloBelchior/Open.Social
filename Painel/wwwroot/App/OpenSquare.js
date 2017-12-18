@@ -10,18 +10,18 @@
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/', { templateUrl: '/Login/Index', controller: 'AuthenticateController' });
-        $routeProvider.when('/Extract', { templateUrl: '/Home/Extract', controller: 'ExtractController', authorize: true });
-        $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index', controller: 'TimeSheetController' });
-        $routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
-        $routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
-        $routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });
-        $routeProvider.when('/Account', { templateUrl: '/Account/Index', controller: 'AccountController' });
-        $routeProvider.when('/CustomSetup', { templateUrl: '/Account/CustomSetup', controller: 'AccountCustomController' });
-        $routeProvider.when('/Site', { templateUrl: '/WebSite/Index', controller: 'WebSiteController' });
-        $routeProvider.when('/File', { templateUrl: '/File/Index', controller: 'FileController' });
-        $routeProvider.when('/404', { templateUrl: '/Home/NotFound', controller: 'homeController' });
-        $routeProvider.otherwise({ redirectTo: '/404' });
+        $routeProvider.when('/', { templateUrl: '/Home/Index', controller: 'AuthenticateController', authorize: false });
+        $routeProvider.when('/Register', { templateUrl: '/Login/Register', controller: 'AuthenticateController', authorize: true });
+        $routeProvider.when('/Login', { templateUrl: '/Login/Login', controller: 'AuthenticateController', authorize: false });
+        //$routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
+        //$routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
+        //$routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });
+        //$routeProvider.when('/Account', { templateUrl: '/Account/Index', controller: 'AccountController' });
+        //$routeProvider.when('/CustomSetup', { templateUrl: '/Account/CustomSetup', controller: 'AccountCustomController' });
+        //$routeProvider.when('/Site', { templateUrl: '/WebSite/Index', controller: 'WebSiteController' });
+        //$routeProvider.when('/File', { templateUrl: '/File/Index', controller: 'FileController' });
+        //$routeProvider.when('/404', { templateUrl: '/Home/NotFound', controller: 'homeController' });
+        $routeProvider.otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(false);
         $locationProvider.hashPrefix = '#';
     }]);
@@ -39,7 +39,7 @@
         });
         $rootScope.$on('$rootChangeError', function (evt, to, from, error) {
             if (error instanceof AuthorizationError) {
-                $location.path('./login').search('returnTo', to.originalPath);
+                $location.path('/#/Login').search('returnTo', to.originalPath);
             }
         });
     }

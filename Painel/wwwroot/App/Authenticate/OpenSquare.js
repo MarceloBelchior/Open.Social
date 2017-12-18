@@ -9,9 +9,9 @@
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/', { templateUrl: '/Login/Login', controller: 'AuthenticateController' });
-        $routeProvider.when('/Register', { templateUrl: '/Login/Register', controller: 'AuthenticateController' });
-        $routeProvider.otherwise({ redirectTo: '/404' });
+        $routeProvider.when('/', { templateUrl: '/OAuth/Login/Login', controller: 'AuthenticateController' });
+        $routeProvider.when('/Register', { templateUrl: '/OAuth//Login/Register', controller: 'AuthenticateController' });
+        $routeProvider.otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(false);
         $locationProvider.hashPrefix = '#';
     }]);
@@ -19,21 +19,5 @@
         cfpLoadingBarProvider.includeSpinner = true;
     })
 
-    application.config(function ($provide, $httpProvider) {
-
-        // Intercept http calls.
-        $provide.factory('httpAuthenticationResponseInterceptor', function ($q) {
-            return {
-                requestError: function (rejection) {
-                    return $q.reject(rejection);
-                },
-                responseError: function (rejection) {
-                    if (rejection.status == 401) {
-                        window.location = "/404";
-                    }
-                    return $q.reject(rejection);
-                }
-            };
-        });
-    });
 }());
+
