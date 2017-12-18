@@ -38,13 +38,13 @@ namespace Painel
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Login/Index");
 
-
+            
             services.AddOptions();
             // Add framework services.
             services.Configure<DocumentDbConfig>(Configuration.GetSection("DocumentDb"));
             //https://andrewlock.net/reloading-strongly-typed-options-in-asp-net-core-1-1-0/
             services.AddScoped(cfg => cfg.GetService<IOptionsSnapshot<DocumentDbConfig>>().Value);
-
+            services.AddScoped<Interface.IUserManager, Manager.UserManager>();
             services.AddMvc();
             // Create the Autofac container builder.
             var builder = new ContainerBuilder();
@@ -53,7 +53,7 @@ namespace Painel
             builder.RegisterModule(new Open.Social.AzureDocumentDb.IoC.AutofacModule());
             builder.RegisterModule(new Open.Social.Service.IoC.AutofacModule());
             builder.RegisterModule(new IoC.AutofacModule());
-
+            
 
             builder.Populate(services);
             this.ApplicationContainer = builder.Build();
@@ -84,9 +84,6 @@ namespace Painel
 
                // routes.MapRoute(name: "OAuth",  template: "OAuth/{controller=Login}/{action=Index}/{id?}");
        
-                routes.MapRoute(
-               name: "OAuth",
-               template: "OAuth/{controller=Login}/{action=Index}/{id?}");
 
                 routes.MapRoute(
            name: "default",

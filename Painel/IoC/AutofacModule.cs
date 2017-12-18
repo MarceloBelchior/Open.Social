@@ -11,6 +11,8 @@ namespace Painel.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<Manager.TimeSheetManager>().As<Interface.ITimeSheetManager>().SingleInstance();
+            builder.RegisterType<Manager.UserManager>().As<Interface.IUserManager>().SingleInstance();
+
         }
     }
 }

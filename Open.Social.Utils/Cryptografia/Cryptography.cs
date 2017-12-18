@@ -7,7 +7,7 @@ namespace Open.Social.Utils.Cryptografia
 {
     public class Cryptography
     {
-        public string CypherValueByProjectConfiguration(string value, string saltValue, string cypherType)
+        public string CypherValueByProjectConfiguration(string value, string saltValue, string cypherType = "sha512")
         {
             saltValue = (saltValue == null) ? string.Empty : saltValue;
 

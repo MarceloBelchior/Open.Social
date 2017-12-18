@@ -10,7 +10,7 @@ namespace Painel.Areas.Controllers
     
     [AllowAnonymous]
     [Area("OAuth")]
-    [Route("/[controller]/[action]")]
+    [Route("OAuth/[controller]/[action]")]
     public class LoginController : Controller
     {
         
