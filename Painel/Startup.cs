@@ -88,9 +88,9 @@ namespace Painel
                 routes.MapRoute(
            name: "default",
            template: "{controller=Open}/{action=Index}/{id?}");
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Open", action = "Index" });
+                //routes.MapSpaFallbackRoute(
+                //    name: "spa-fallback",
+                //    defaults: new { controller = "Open", action = "Index" });
             });
             app.UseAuthentication();
 

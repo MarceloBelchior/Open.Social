@@ -38,12 +38,12 @@ namespace Open.Social.Service.Persist
         public User Autenticate(User entidade)
         {
             Expression<Func<User, bool>> _where = c => c.email == entidade.email;
-            var i = _userManagerStore.Consult(_where).AsQueryable();
+            var i = _userManagerStore.Consult(_where);
             if (i.Count() == 0)
                   new NotImplementedException("Usuario ou senha invalidos.");
             var _result = new Utils.Cryptografia.Cryptography().CypherValueByProjectConfiguration(entidade.password, i.FirstOrDefault().salt.ToString());
             if (_result == i.FirstOrDefault().password)
-                return this.Clean(i);
+                return this.Clean(i.FirstOrDefault());
             return null;
         }
 
