@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -29,22 +26,32 @@ namespace Painel
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthorization(auth =>
-            {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                    .RequireAuthenticatedUser().Build());
-            });
+            //services.AddAuthorization(auth =>
+            //{
+            //    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+            //        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+            //        .RequireAuthenticatedUser().Build());
+            //});
 
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/Login/Index");
+            //services.ConfigureApplicationCookie(options => options.LoginPath = "/OAuth/Login/Index");
 
-            
+            //services.AddAuthentication();
+
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+        {
+            options.LoginPath = "/OAuth/Login/Index";
+            options.LogoutPath = "/OAuth/Login/logout";
+        });
+
+
             services.AddOptions();
             // Add framework services.
             services.Configure<DocumentDbConfig>(Configuration.GetSection("DocumentDb"));
             //https://andrewlock.net/reloading-strongly-typed-options-in-asp-net-core-1-1-0/
             services.AddScoped(cfg => cfg.GetService<IOptionsSnapshot<DocumentDbConfig>>().Value);
-            services.AddScoped<Interface.IUserManager, Manager.UserManager>();
+            services.AddScoped<Open.Social.UI.Interface.IUserManager, Open.Social.UI.Manager.UserManager>();
             services.AddMvc();
             // Create the Autofac container builder.
             var builder = new ContainerBuilder();
@@ -52,8 +59,8 @@ namespace Painel
             // Add any Autofac modules or registrations.           
             builder.RegisterModule(new Open.Social.AzureDocumentDb.IoC.AutofacModule());
             builder.RegisterModule(new Open.Social.Service.IoC.AutofacModule());
-            builder.RegisterModule(new IoC.AutofacModule());
-            
+            builder.RegisterModule(new Open.Social.AzureDocumentDb.IoC.AutofacModule());
+
 
             builder.Populate(services);
             this.ApplicationContainer = builder.Build();
@@ -76,14 +83,14 @@ namespace Painel
             }
 
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
 
 
 
-               // routes.MapRoute(name: "OAuth",  template: "OAuth/{controller=Login}/{action=Index}/{id?}");
-       
+                // routes.MapRoute(name: "OAuth",  template: "OAuth/{controller=Login}/{action=Index}/{id?}");
+
 
                 routes.MapRoute(
            name: "default",
@@ -92,7 +99,7 @@ namespace Painel
                 //    name: "spa-fallback",
                 //    defaults: new { controller = "Open", action = "Index" });
             });
-            app.UseAuthentication();
+
 
 
         }

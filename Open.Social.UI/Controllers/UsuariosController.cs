@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Open.Social.UI.Controllers
 {
-    public class UsuariosController : Controller
+    public class UsuariosController : BaseController
     {
         public IActionResult Index()
         {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Open.Social.UI.Controllers
 {
-    public class TimeSheetController : Controller
+    public class TimeSheetController : BaseController
     {
         public IActionResult Index()
         {

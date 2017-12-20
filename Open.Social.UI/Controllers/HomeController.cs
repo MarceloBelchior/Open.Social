@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Painel.Models;
-using Microsoft.AspNetCore.Authorization;
+using Open.Social.UI.Models;
 
 namespace Open.Social.UI.Controllers
 {
 
     public class HomeController : BaseController
     {
+
         public IActionResult Index()
         {
             return View();

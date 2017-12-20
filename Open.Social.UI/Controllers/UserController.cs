@@ -9,7 +9,7 @@ namespace Open.Social.UI.Controllers
 {
     [Produces("application/json")]
     [Route("api/User/[action]")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly Interface.IUserManager userManager;
         public UserController(Interface.IUserManager _userManager)

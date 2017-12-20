@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Painel.Areas.Controllers
+namespace Open.Social.UI.Areas.Controllers
 {
     
     [AllowAnonymous]

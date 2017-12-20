@@ -21,14 +21,33 @@ namespace Open.Social.Core.EF.SessionManager
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+        //    modelBuilder.Entity<IdentityUser>()
+        //.HasMany(e => eClaims)
+        //.WithOne()
+        //.HasForeignKey(e => e.UserId)
+        //.IsRequired()
+        //.OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<IdentityUser>().ToTable("Tbo_User_Core").Property(c=>c.Id).HasColumnName("UserID").IsUnicode(true);
-            modelBuilder.Entity<IdentityRole>().ToTable("TBO_Role").Property(c=>c.Id).HasColumnName("RoleId").IsUnicode(true);
-            modelBuilder.Entity<IdentityUserRole>().ToTable("TBO_UserRole_Core").Property(c=>c.UserId).IsUnicode(true);
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("TBO_UserLogin_Core").Property(c=>c.LoginProvider).IsUnicode(true);
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("TBO_UserClaim_Core");
-            
-            
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasMany(e => e.Logins)
+        //        .WithOne()
+        //        .HasForeignKey(e => e.UserId)
+        //        .IsRequired()
+        //        .OnDelete(DeleteBehavior.Cascade);
+
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasMany(e => e.Roles)
+        //        .WithOne()
+        //        .HasForeignKey(e => e.UserId)
+        //        .IsRequired()
+        //        .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<IdentityUser>().ToTable("Tbo_User_Core").Property(c=>c.Id).HasColumnName("UserID").IsUnicode(true);
+            //modelBuilder.Entity<IdentityRole>().ToTable("TBO_Role").Property(c=>c.Id).HasColumnName("RoleId").IsUnicode(true);
+            //modelBuilder.Entity<IdentityUserRole>().ToTable("TBO_UserRole_Core").Property(c=>c.UserId).IsUnicode(true);
+            //modelBuilder.Entity<IdentityUserLogin>().ToTable("TBO_UserLogin_Core").Property(c=>c.LoginProvider).IsUnicode(true);
+            //modelBuilder.Entity<IdentityUserClaim>().ToTable("TBO_UserClaim_Core");
+
+
 
 
             modelBuilder.Entity<Core.Model.User.User>(c =>

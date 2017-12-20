@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Open.Social.UI.Controllers
 {
-    
-    public class BaseController : Controller
+    [Authorize]
+    public abstract class BaseController : Controller
     {
        
     }
