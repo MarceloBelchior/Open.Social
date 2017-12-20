@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Painel.Manager
+namespace Open.Social.UI.Manager
 {
     public class UserManager : Interface.IUserManager
     {

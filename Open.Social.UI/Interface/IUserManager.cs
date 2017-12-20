@@ -1,10 +1,12 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
 using Open.Social.Core.Model.User;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
-namespace Painel.Interface
+namespace Open.Social.UI.Interface
 {
     public interface IUserManager
     {

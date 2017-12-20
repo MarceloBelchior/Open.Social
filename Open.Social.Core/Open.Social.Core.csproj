@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Model\Auth\" />
+    <Folder Include="Model\Application\" />
     <Folder Include="Model\Store\" />
   </ItemGroup>
 

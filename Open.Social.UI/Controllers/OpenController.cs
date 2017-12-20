@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Painel.Controllers
+namespace Open.Social.UI.Controllers
 {
     public class OpenController : Controller
     {

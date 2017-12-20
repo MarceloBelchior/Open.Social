@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Painel.Controllers
+namespace Open.Social.UI.Controllers
 {
     [Produces("application/json")]
     [Route("api/User/[action]")]

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Painel.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Painel.Controllers
+namespace Open.Social.UI.Controllers
 {
 
     public class HomeController : BaseController

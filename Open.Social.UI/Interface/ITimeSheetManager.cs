@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Painel.Interface
+namespace Open.Social.UI.Interface
 {
     public interface ITimeSheetManager
     {

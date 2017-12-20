@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Painel.Controllers
+namespace Open.Social.UI.Controllers
 {
     
     public class BaseController : Controller

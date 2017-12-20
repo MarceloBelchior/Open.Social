@@ -1,6 +1,6 @@
 using System;
 
-namespace Painel.Models
+namespace Open.Social.UI.Models
 {
     public class ErrorViewModel
     {

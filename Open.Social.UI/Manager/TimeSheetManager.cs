@@ -1,12 +1,12 @@
 ﻿using Open.Social.Core.Interface;
 using Open.Social.Core.Model.TimeSheet;
-using Painel.Interface;
+using Open.Social.UI.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Painel.Manager
+namespace Open.Social.UI.Manager
 {
     public class TimeSheetManager : ITimeSheetManager
     {
