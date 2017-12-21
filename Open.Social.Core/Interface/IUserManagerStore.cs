@@ -20,6 +20,6 @@ namespace Open.Social.Core.Interface
         IEnumerable<User> Consult(Expression<Func<User, bool>> expression);
         void Remove(User entidade);
         User SelectById(User entidade);
-        User Autenticate(User entidade);
+        Boolean Autenticate(User entidade);
     }
 }

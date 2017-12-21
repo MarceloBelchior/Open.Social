@@ -13,6 +13,12 @@ namespace Open.Social.UI.Areas.Controllers
     [Route("OAuth/[controller]/[action]")]
     public class LoginController : Controller
     {
+        public readonly Interface.IUserManager _userManager;
+
+        public LoginController(Interface.IUserManager userManager)
+        {
+            _userManager = userManager;
+        }
         
         public IActionResult Index()
         {
@@ -29,8 +35,10 @@ namespace Open.Social.UI.Areas.Controllers
 
         //[HttpPost]
         //[Route("Autenticacao")]
-        public async Task Autenticacao(object entity)
+        public IActionResult Autenticacao(string login, string password)
         {
+             _userManager.Authenticate(new Core.Model.User.User() { email = login, password = password }) ;
+            return Redirect("/#/");
             //    await _timeSheetManager.CreateAsync(entity);
         }
 

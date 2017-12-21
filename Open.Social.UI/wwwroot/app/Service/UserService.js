@@ -4,7 +4,7 @@
 
     var injectParams = ['$http', '$rootScope'];
 
-    var UserFactory = function ($http, $rootScope) {
+    var UserService = function ($http, $rootScope) {
         return {
             CheckEmail: function (data, successCallback, errorCallback) {
                 $http.post(global.service + '/api/User/CheckEmail?email=' + data.email)
@@ -16,7 +16,7 @@
                     .success(successCallback).error(errorCallback);
             },
             Autenticacao: function (data, successCallBack, errorCallBack) {
-                $http.post("/Home/Login?login=" + data.login + "&password=" + data.password).success(successCallBack).error(errorCallBack);
+                $http.post("/OAuth/Login/Autenticacao?login=" + data.login + "&password=" + data.password).success(successCallBack).error(errorCallBack);
             },
             AuthenticateSocialMedia: function (data, successCallBack, errorCallBack) {
                 $http.post("/Home/AuthenticateSocialMedia", data).success(successCallBack).error(errorCallBack);
@@ -32,7 +32,7 @@
 
     UserFactory.$inject = injectParams;
 
-    angular.module('Trade4B').factory('UserFactory', UserFactory);
+    angular.module('Trade4B').service('UserService', UserService);
 
 }());
 

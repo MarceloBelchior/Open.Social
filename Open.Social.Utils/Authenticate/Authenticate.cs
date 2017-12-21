@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
 using System.Security.Claims;
+using Open.Social.Core.Model.User;
 
 namespace Open.Social.Utils.Authenticate
 {
@@ -13,7 +14,7 @@ namespace Open.Social.Utils.Authenticate
         //private static string TEST_PASSWORD = ConfigurationManager.AppSettings["OAuth_Password"];
         //private static string TOKEN_ENDPOINT = string.Format("{0}/Token", ConfigurationManager.AppSettings["hostApi"]);
 
-        public static void LogOn(Core.Model.User.User user, int expiration, bool manualRedirect = false)
+        public static Boolean LogOn(User user, int expiration, bool manualRedirect = false)
         {
 
             //var user = await accountRepo.AuthenticateAndLoadUser(loginUser.Username, loginUser.Password);
@@ -22,7 +23,7 @@ namespace Open.Social.Utils.Authenticate
 
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
             identity.AddClaim(new Claim(user.name, user.email));
-
+            return true;
 
             //if (user.Fullname == null)
             //    user.Fullname = string.Empty;
