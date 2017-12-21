@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.AzureDocumentDb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Service", "Open.Social.Service\Open.Social.Service.csproj", "{D6BD00F3-A645-410D-836F-8BBE7878F4C0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{1FA70AD2-96D0-488F-8081-3673AC94E678}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Persist", "1 - Persist", "{544725FA-591E-4868-940C-27534E5B1043}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Core", "0 - Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"

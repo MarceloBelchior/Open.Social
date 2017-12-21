@@ -14,6 +14,7 @@ namespace Open.Social.Core.Interface
         User SelectById(User entidade);
     }
 
+
     public interface IUserService
     {
         void SaveOrUpdate(User entity);

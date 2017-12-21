@@ -1,23 +1,38 @@
 ﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Open.Social.Core.Model.config;
+using Open.Social.Utils.JWT;
 
 namespace Painel
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(env.ContentRootPath)
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+               .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+               .AddEnvironmentVariables();
+            Configuration = builder.Build();
+
+
         }
 
         public IConfiguration Configuration { get; }
@@ -26,49 +41,39 @@ namespace Painel
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthorization(auth =>
-            //{
-            //    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-            //        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-            //        .RequireAuthenticatedUser().Build());
-            //});
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCookie(options =>
+               {
+                   options.LoginPath = "/OAuth/Login/index";
 
-            //services.ConfigureApplicationCookie(options => options.LoginPath = "/OAuth/Login/Index");
+               });
 
-            //services.AddAuthentication();
+        
 
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-        {
-            options.LoginPath = "/OAuth/Login/Index";
-            options.LogoutPath = "/OAuth/Login/logout";
-        });
+            services.AddMvc();
 
 
             services.AddOptions();
-            // Add framework services.
-            services.Configure<DocumentDbConfig>(Configuration.GetSection("DocumentDb"));
-            //https://andrewlock.net/reloading-strongly-typed-options-in-asp-net-core-1-1-0/
-            services.AddScoped(cfg => cfg.GetService<IOptionsSnapshot<DocumentDbConfig>>().Value);
-            services.AddScoped<Open.Social.UI.Interface.IUserManager, Open.Social.UI.Manager.UserManager>();
-            services.AddMvc();
-            // Create the Autofac container builder.
-            var builder = new ContainerBuilder();
 
-            // Add any Autofac modules or registrations.           
+            services.Configure<DocumentDbConfig>(Configuration.GetSection("DocumentDb"));
+            services.AddScoped(cfg => cfg.GetService<IOptionsSnapshot<DocumentDbConfig>>().Value);
+            services.AddMvc();
+            var builder = new ContainerBuilder();
             builder.RegisterModule(new Open.Social.AzureDocumentDb.IoC.AutofacModule());
             builder.RegisterModule(new Open.Social.Service.IoC.AutofacModule());
-          //  builder.RegisterModule(new Open.Social.Core.IoC.AutofacModule());
-
-
+            builder.RegisterModule(new Open.Social.UI.IoC.AutofacModule());
+            services.AddOptions();
             builder.Populate(services);
             this.ApplicationContainer = builder.Build();
 
-            // Create the IServiceProvider based on the container.
+
             return new AutofacServiceProvider(this.ApplicationContainer);
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -81,23 +86,13 @@ namespace Painel
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
-
-
-
-                // routes.MapRoute(name: "OAuth",  template: "OAuth/{controller=Login}/{action=Index}/{id?}");
-
-
                 routes.MapRoute(
            name: "default",
            template: "{controller=Open}/{action=Index}/{id?}");
-                //routes.MapSpaFallbackRoute(
-                //    name: "spa-fallback",
-                //    defaults: new { controller = "Open", action = "Index" });
             });
 
 

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Open.Social.Core.EF.Repository
 {
-    public class UserRepository : BaseRepository<Model.User.User>, Core.Interface.IUserManagerStore
+    public class UserRepository : BaseRepository<Model.User.User>, Core.Interface.IUserManagerRepository
     {
         public IEnumerable<User> Consult(Expression<Func<User, bool>> expression)
         {

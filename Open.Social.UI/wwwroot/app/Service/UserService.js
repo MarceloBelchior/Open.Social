@@ -16,7 +16,7 @@
                     .success(successCallback).error(errorCallback);
             },
             Autenticacao: function (data, successCallBack, errorCallBack) {
-                $http.post("/OAuth/Login/Autenticacao?login=" + data.login + "&password=" + data.password).success(successCallBack).error(errorCallBack);
+                $http.post("/OAuth/Login/Autenticacao?login=" + data.login + "&password=" + data.password).then(successCallBack).catch(errorCallBack);
             },
             AuthenticateSocialMedia: function (data, successCallBack, errorCallBack) {
                 $http.post("/Home/AuthenticateSocialMedia", data).success(successCallBack).error(errorCallBack);
@@ -30,7 +30,7 @@
         }
     };
 
-    UserFactory.$inject = injectParams;
+    UserService.$inject = injectParams;
 
     angular.module('Trade4B').service('UserService', UserService);
 

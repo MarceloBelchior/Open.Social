@@ -28,12 +28,21 @@ namespace Open.Social.AzureDocumentDb.IoC
             }).As<IAzureDocDatabase>().SingleInstance();
 
             //Register a Task<IAzureDocDatabase> that will run it's InitializeDatabaseAsync method
-            builder.Register(c => c.Resolve<IAzureDocDatabase>().InitializeDatabaseAsync());
+            builder.Register(c => c.Resolve<IAzureDocDatabase>().InitializeDatabaseAsync()); 
+            
 
             //Register a Task<ProductCollection> that will resolve Task<IAzureDocDatabase> and Initialize the collection
             builder.Register(async c =>
             {
                 var collection = new TimeSheetCollection(await c.Resolve<Task<IAzureDocDatabase>>(), TimeSheetCollection);
+                await collection.InitializeAsync();
+
+                return collection;
+            });
+
+            builder.Register(async c =>
+            {
+                var collection = new UserCollection(await c.Resolve<Task<IAzureDocDatabase>>(), UserCollection);
                 await collection.InitializeAsync();
 
                 return collection;
@@ -49,9 +58,11 @@ namespace Open.Social.AzureDocumentDb.IoC
             //});
 
             builder.Register(c => c.Resolve<Task<TimeSheetCollection>>().Result).As<ITimeSheetCollection>().SingleInstance();
+            builder.Register(c => c.Resolve<Task<UserCollection>>().Result).As<IUserCollection>().SingleInstance();
             //builder.Register(c => c.Resolve<Task<CartCollection>>().Result).As<ICartCollection>().SingleInstance();
 
             builder.RegisterType<TimeSheetManagerStore>().As<ITimeSheetManagerStore>().SingleInstance();
+            builder.RegisterType<UserManagerStore>().As<IUserManagerStore>().SingleInstance();
             //builder.RegisterType<CartStorageManager>().As<ICartStorage>().SingleInstance();
         }
     }

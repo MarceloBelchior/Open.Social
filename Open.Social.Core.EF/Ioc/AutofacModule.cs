@@ -10,7 +10,7 @@ namespace Open.Social.Core.EF.Ioc
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => c.Resolve<Task<Repository.UserRepository>>().Result).As<Core.Interface.IUserManagerStore>().SingleInstance();
+            builder.Register(c => c.Resolve<Task<Repository.UserRepository>>().Result).As<Core.Interface.IUserManagerRepository>().SingleInstance();
         }
     }
 }

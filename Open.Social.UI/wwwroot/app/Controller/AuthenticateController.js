@@ -8,7 +8,11 @@
         
         $scope.Submit = function () {
             var data = { login: $scope.login, password: $scope.password };
-            UserService.Autenticacao(data, function (err) { }, function (err) { toastr.error("Erro na autenticação."); });
+            UserService.Autenticacao(data, function (result) {
+                if (result.data == true)
+                    $window.location = "../../#/";
+                toastr.error("Usuario ou senha invalidos");
+            }, function (err) { toastr.error("Erro na autenticação."); });
                     
                
 

@@ -14,7 +14,7 @@ namespace Open.Social.Utils.Authenticate
         //private static string TEST_PASSWORD = ConfigurationManager.AppSettings["OAuth_Password"];
         //private static string TOKEN_ENDPOINT = string.Format("{0}/Token", ConfigurationManager.AppSettings["hostApi"]);
 
-        public static Boolean LogOn(User user, int expiration, bool manualRedirect = false)
+        public static void LogOn(User user, int expiration, bool manualRedirect = false)
         {
 
             //var user = await accountRepo.AuthenticateAndLoadUser(loginUser.Username, loginUser.Password);
@@ -22,14 +22,15 @@ namespace Open.Social.Utils.Authenticate
             //    throw new ApiException("Invalid Login Credentials", 401);
 
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim(user.name, user.email));
-            return true;
+            identity.AddClaim(new Claim(user.email, user.email));
+            
+            //return true;
 
             //if (user.Fullname == null)
             //    user.Fullname = string.Empty;
             //identity.AddClaim(new Claim("FullName", user.Fullname));
 
-            //await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+         //   await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 
             //return true;
 

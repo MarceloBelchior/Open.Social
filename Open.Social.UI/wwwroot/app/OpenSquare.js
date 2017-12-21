@@ -11,8 +11,8 @@
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', { templateUrl: '/Home/Index', controller: 'AuthenticateController', authorize: false });
-        $routeProvider.when('/Register', { templateUrl: '/Login/Register', controller: 'AuthenticateController', authorize: true });
-        $routeProvider.when('/Login', { templateUrl: '/Login/Login', controller: 'AuthenticateController', authorize: false });
+        //$routeProvider.when('/Register', { templateUrl: '/Login/Register', controller: 'AuthenticateController', authorize: true });
+        //$routeProvider.when('/Login', { templateUrl: '/Login/Login', controller: 'AuthenticateController', authorize: false });
         //$routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
         //$routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
         //$routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });
@@ -26,24 +26,24 @@
         $locationProvider.hashPrefix = '#';
     }]);
 
-    application.run(['$rootScope', '$location', function ($rootScope, $location) {
-        $rootScope.$on('$routeChangeStart', function (evt, to, from) {
-            if (to.authorize === true) {
-                to.resolve = to.resolve || {};
-                if (!to.resolve.authorizationResolver) {
-                    to.resolve.authorizationResolver = ["authservice", function (authservice) {
-                        return authservice.authorize();
-                    }];
-                }
-            }
-        });
-        $rootScope.$on('$rootChangeError', function (evt, to, from, error) {
-            if (error instanceof AuthorizationError) {
-                $location.path('/#/Login').search('returnTo', to.originalPath);
-            }
-        });
-    }
-    ]);
+    //application.run(['$rootScope', '$location', function ($rootScope, $location) {
+    //    $rootScope.$on('$routeChangeStart', function (evt, to, from) {
+    //        if (to.authorize === true) {
+    //            to.resolve = to.resolve || {};
+    //            if (!to.resolve.authorizationResolver) {
+    //                to.resolve.authorizationResolver = ["authservice", function (authservice) {
+    //                    return authservice.authorize();
+    //                }];
+    //            }
+    //        }
+    //    });
+    //    $rootScope.$on('$rootChangeError', function (evt, to, from, error) {
+    //        if (error instanceof AuthorizationError) {
+    //            $location.path('/#/Login').search('returnTo', to.originalPath);
+    //        }
+    //    });
+    //}
+    //]);
 
     application.config(function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = true;

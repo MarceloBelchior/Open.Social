@@ -6,18 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Open.Social.AzureDocumentDb\Open.Social.AzureDocumentDb.csproj" />
-    <ProjectReference Include="..\Open.Social.Core.EF\Open.Social.Core.EF.csproj" />
     <ProjectReference Include="..\Open.Social.Core\Open.Social.Core.csproj" />
     <ProjectReference Include="..\Open.Social.Utils\Open.Social.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Persist\" />
   </ItemGroup>
 
 </Project>
