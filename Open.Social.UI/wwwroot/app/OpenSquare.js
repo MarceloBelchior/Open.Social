@@ -10,9 +10,9 @@
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/', { templateUrl: '/Home/Index', controller: 'AuthenticateController', authorize: false });
-        //$routeProvider.when('/Register', { templateUrl: '/Login/Register', controller: 'AuthenticateController', authorize: true });
-        //$routeProvider.when('/Login', { templateUrl: '/Login/Login', controller: 'AuthenticateController', authorize: false });
+        $routeProvider.when('/', { templateUrl: '/Home/Index', controller: 'AuthenticateController'});
+        $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index', controller: 'TimeSheetController' });
+        $routeProvider.when('/User', { templateUrl: '/Login/Login', controller: 'AuthenticateController', authorize: false });
         //$routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
         //$routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
         //$routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });
@@ -22,7 +22,12 @@
         //$routeProvider.when('/File', { templateUrl: '/File/Index', controller: 'FileController' });
         //$routeProvider.when('/404', { templateUrl: '/Home/NotFound', controller: 'homeController' });
         $routeProvider.otherwise({ redirectTo: '/' });
-        $locationProvider.html5Mode(false);
+
+        $locationProvider.hashPrefix('');
+        $locationProvider.html5Mode({
+            enabled: false,
+            requireBase: false
+        })
         $locationProvider.hashPrefix = '#';
     }]);
 

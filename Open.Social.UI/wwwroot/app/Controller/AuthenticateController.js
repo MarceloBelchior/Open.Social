@@ -11,7 +11,7 @@
             UserService.Autenticacao(data, function (result) {
                 if (result.data == true)
                     $window.location = "../../#/";
-                toastr.error("Usuario ou senha invalidos");
+                toastr.warning("Usuario ou senha invalidos");
             }, function (err) { toastr.error("Erro na autenticação."); });
                     
                

@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Open.Social.UI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/User/[action]")]
     public class UserController : BaseController
     {
         private readonly Interface.IUserManager userManager;
+        public IActionResult Index()
+        {
+            return View();
+        }
         public UserController(Interface.IUserManager _userManager)
         {
             userManager = _userManager;

@@ -1,4 +1,209 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<div class="content-wrapper">
+    <!-- Page header -->
+    <div class="page-header page-header-default">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
+            </div>
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb-line">
+            <ul class="breadcrumb">
+                <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ul>
+            <ul class="breadcrumb-elements">
+                <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-gear position-left"></i>
+                        Settings
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+                        <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+                        <li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /page header -->
+    <!-- Content area -->
+    <div class="content">
+        <!-- Main charts -->
+
+
+        <div class="content-wrapper" ng-controller="TimeSheetController" ng-init="Init()">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Apontamento de Horas
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Admin</a></li>
+                    <li class="active">TimeSheet</li>
+                </ol>
+            </section>
+            <!-- Main content -->
+            <section class="invoice">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="page-header">
+                            <i class="fa fa-globe"></i> TimeSheet.
+                            <small class="pull-right">Date: 2/10/2014</small>
+                        </h2>
+                    </div><!-- /.col -->
+                </div>
+                <!-- title row -->
+
+
+                <div class="row invoice-info">
+                    <div class="col-lg-8 invoice-col">
+
+                        <form ng-submit="GetTimeSheet()" id="form_search">
+                            <span class="time-label">
+                                Periodo :
+                                <input type="text" class="form-inline " data-datepicker ng-model="Data.IniDate"> até
+                                <input type="text" class="form-inline " data-datepicker ng-model="Data.EndDate">
+                            </span>
+
+                            <button class="btn btn-sm btn-success" ng-click="GetTimeSheet()">Pesquisar</button>
+                            <button class="btn btn-sm btn-success" ng-click="Export()">Exportar</button>
+                            <button data-toggle="modal" class="btn btn-sm btn-default" data-target="#div_add_timesheet" ng-click="New()">Add TimeSheet</button>
+                        </form>
+
+
+
+                        <!-- /.panel-heading -->
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <i class="ion ion-clipboard"></i>
+                                <h3 class="box-title">TimeSheet</h3>
+                                <div class="box-tools pull-right">
+
+
+
+                                    <!-- /.table-responsive -->
+                                </div>
+                            </div>
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Data</th>
+                                        <th>In</th>
+                                        <th>Break In</th>
+                                        <th>Break Out</th>
+                                        <th>Out</th>
+                                        <th>Works</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-repeat="time in result | orderBy: 'IniDay' ">
+                                        <td>{{time.id }}</td>
+                                        <td>{{time.IniDay | date: 'dd/MM/yyyy' }}</td>
+                                        <td>{{time.IniDay | date: 'HH:mm' }}</td>
+                                        <td>{{time.BreakFestIni | date: 'HH:mm'}}</td>
+                                        <td>{{time.BreakFestEnd | date: 'HH:mm'}}</td>
+                                        <td>{{time.EndDay | date: 'HH:mm'}}</td>
+                                        <td> {{ (timediff(time.IniDay,time.BreakFestIni)  + timediff(time.BreakFestEnd,time.EndDay)) | number  : 2 }}</td>
+                                        <td><a ng-click="Remove(time.id)" style="cursor:pointer;">Excluir</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.row -->
+                        <!-- /.panel-body -->
+                        <div class="panel" ng-show="result.length == 0"> Nenhum registro encontrado. </div>
+                    </div>
+                    <!-- /.col-lg-8 -->
+                    <div class="col-md-4 invoice-col">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-bell fa-fw"></i> Notificações.
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="" class="list-group-item ">
+                                        <i class="fa fa-comment fa-fw"></i><b> Total de Horas:</b> <input type="text" class="no-border " ng-model="SumMonth">
+                                    </a>
+
+                                    <a href="" class="list-group-item ">
+                                        <i class="fa fa-magnet fa-fw"></i> Total de Nota Fiscal: {{ SumMonth * ValorHora | number: 2 }}
+
+
+                                        <a href="" class="list-group-item ">
+                                            <i class="fa fa-archive fa-fw"></i> Imposto Simples: {{ ((SumMonth * ValorHora) * 0.06) | number: 2 }}
+
+                                            <br />
+                                        </a>
+                                        <a href="" class="list-group-item ">
+                                            <i class="fa fa-archive fa-fw"></i>  Total - Imposto : {{ ((SumMonth * ValorHora) - ((SumMonth * ValorHora) * 0.06)) | number: 2 }}
+
+                                            <br />
+                                        </a>
+
+                                        <a href="" class="list-group-item ">
+                                            <i class="fa fa-adjust fa-fw"></i>  Total Liquido : {{ ((SumMonth * ValorHora) - ((SumMonth * ValorHora) * 0.06)) - contador - gps | number: 2 }}
+
+                                            <br />
+                                        </a>
+                                        <a href="" class="list-group-item ">
+                                            <i class="fa fa-mail-reply fa-fw"></i> GPS: <input ng-model="gps" class="no-border" maskcurrency type="text" />
+
+                                            <br />
+                                        </a>
+                                        <a href="" class="list-group-item ">
+                                            <i class="fa fa-mail-reply fa-fw"></i> Contador: <input ng-model="contador" maskcurrency class="no-border " type="text" />
+
+                                            <br />
+                                        </a>
+                                        <a href="" class="list-group-item ">
+                                            <i class="fa fa-mail-forward fa-fw"></i> Valor Hora: <input ng-model="ValorHora" maskcurrency class="no-border " type="text" />
+
+                                            <br />
+                                        </a>
+                                </div>
+
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-4 -->
+
+                    <div class="modal fade" id="div_add_timesheet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-include="'/TimeSheet/AddTimeSheet'"></div>
+                </div>
+            </section><!-- /.content -->
+            <div class="clearfix"></div>
+        </div><!-- /.content-wrapper -->
+        <!-- /dashboard content -->
+        <!-- Footer -->
+        <div class="footer text-muted">
+            &copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+        </div>
+        <!-- /footer -->
+    </div>
+    <!-- /content area -->
+</div>
+
+
+
+<script src="~/Application/Library/FileSave.js"></script>
+
+
