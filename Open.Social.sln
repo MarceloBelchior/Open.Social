@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Service", "Open
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{1FA70AD2-96D0-488F-8081-3673AC94E678}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persist", "Persist", "{544725FA-591E-4868-940C-27534E5B1043}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Persist", "1 - Persist", "{544725FA-591E-4868-940C-27534E5B1043}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Core", "0 - Core", "{13FA474A-9D68-4E73-B7BD-FA6930DA0B80}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.UI", "Open.Social.UI\Open.Social.UI.csproj", "{23EFE244-6F2D-4992-B92B-7D8A87636321}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Utils", "Open.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Social.Core.EF", "Open.Social.Core.EF\Open.Social.Core.EF.csproj", "{9552D30C-A557-4410-953F-4C06F4F73037}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Front", "Front", "{4E2B664D-F683-42F8-B52F-D18C513E7175}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Front", "2 - Front", "{4E2B664D-F683-42F8-B52F-D18C513E7175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

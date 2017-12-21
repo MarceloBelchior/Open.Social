@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Open.Social.UI.Areas.Controllers
 {
@@ -22,8 +23,9 @@ namespace Open.Social.UI.Areas.Controllers
         {
             return View();
         }
-        public IActionResult Login()
+        public IActionResult Login(string login, string senha)
         {
+            
             return View();
         }
 
