@@ -1,13 +1,15 @@
-﻿
+﻿/// <reference path="../service/userservice.js" />
+
 (function () {
-    var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location', ];
-    var AuthenticateController = function ($scope, $compile, $cookies, $window, $location) {
+    var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location','UserService' ];
+    var AuthenticateController = function ($scope, $compile, $cookies, $window, $location, UserService) {
 
 
         
         $scope.Submit = function () {
-        
-                    toastr.error("Erro na autenticação.");
+            var data = { login: $scope.login, password: $scope.password };
+            UserService.Autenticacao(data, function (err) { }, function (err) { toastr.error("Erro na autenticação."); });
+                    
                
 
 

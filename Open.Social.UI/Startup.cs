@@ -59,7 +59,7 @@ namespace Painel
             // Add any Autofac modules or registrations.           
             builder.RegisterModule(new Open.Social.AzureDocumentDb.IoC.AutofacModule());
             builder.RegisterModule(new Open.Social.Service.IoC.AutofacModule());
-            builder.RegisterModule(new Open.Social.AzureDocumentDb.IoC.AutofacModule());
+          //  builder.RegisterModule(new Open.Social.Core.IoC.AutofacModule());
 
 
             builder.Populate(services);
