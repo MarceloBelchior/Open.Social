@@ -297,3 +297,4 @@ bower_components
 
 /WebApp/dist
 /Painel/Properties/PublishProfiles
+/Open.Social.UI/wwwroot/script

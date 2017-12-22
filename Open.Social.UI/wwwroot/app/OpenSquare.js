@@ -1,8 +1,4 @@
-﻿/// <reference path="../assets/js/angular/angular.js" />
-/// <reference path="../assets/js/angular/angular-route.js" />
-/// <reference path="../assets/js/angular/angular-cookies.js" />
-/// <reference path="../assets/js/angular/angular-resource.js" />
-
+﻿
 (function () {
 
     var application = angular.module('Trade4B', ['ngRoute', 'ngCookies', 'chieffancypants.loadingBar', 'ngAnimate']);
@@ -10,9 +6,9 @@
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/', { templateUrl: '/Home/Index', controller: 'AuthenticateController'});
-        $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index', controller: 'TimeSheetController' });
-        $routeProvider.when('/User', { templateUrl: '/Login/Login', controller: 'AuthenticateController', authorize: false });
+        $routeProvider.when('/', { templateUrl: '/Home/Index' });
+        $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index' });
+        $routeProvider.when('/User', { templateUrl: '/Login/Login'});
         //$routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
         //$routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
         //$routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });
