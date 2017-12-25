@@ -39,7 +39,7 @@ namespace Open.Social.AzureDocumentDb
                 await _database.Client.CreateDocumentAsync(Collection.SelfLink, objectToSave);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

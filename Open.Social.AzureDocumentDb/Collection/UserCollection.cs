@@ -1,5 +1,6 @@
 ﻿using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.AzureDocumentDb.Model;
+using System.Linq;
 
 namespace Open.Social.AzureDocumentDb.Collection
 {
@@ -7,6 +8,11 @@ namespace Open.Social.AzureDocumentDb.Collection
     {
         public UserCollection(IAzureDocDatabase database, string collectionName) : base(database, collectionName)
         {
+        }
+        public IUserCollection OrderByName()
+        {
+            Query = Query.OrderBy(x => x.name);
+            return this;
         }
     }
 }
