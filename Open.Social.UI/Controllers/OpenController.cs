@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Open.Social.UI.Controllers
 {
 
-    public class OpenController : BaseController
+    public class OpenController : Controller
     {
 
         public IActionResult Index()

@@ -3,14 +3,10 @@
 
     var application = angular.module('Trade4B', ['ngRoute', 'ngCookies', 'chieffancypants.loadingBar', 'ngAnimate']);
 
-    //application.config(function ($httpProvider) {
-    //    $httpProvider.defaults.useXDomain = true;
-    //    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    //    $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookies('token');
-    //    $httpProvider.defaults.withCredentials = true;
-    //});
+
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
 
         $routeProvider.when('/', { templateUrl: '/Home/Index' });
         $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index' });
@@ -33,6 +29,13 @@
         })
         $locationProvider.hashPrefix = '#';
     }]);
+
+    application.config(function ($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookie('token');
+        $httpProvider.defaults.withCredentials = true;
+    });
 
     //application.run(['$rootScope', '$location', function ($rootScope, $location) {
     //    $rootScope.$on('$routeChangeStart', function (evt, to, from) {

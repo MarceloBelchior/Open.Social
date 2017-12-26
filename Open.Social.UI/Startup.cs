@@ -119,7 +119,7 @@ namespace Painel
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/OAuth/Login/Index");
             }
             app.UseStaticFiles();
             app.UseAuthentication();

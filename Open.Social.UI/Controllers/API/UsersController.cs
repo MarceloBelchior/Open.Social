@@ -30,16 +30,54 @@ namespace Open.Social.UI.Controllers.API
             _configuration = configuration;
         }
 
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost, AllowAnonymous]
         public async Task<object> Autenticacao(string login, string password)
         {
             if (login == "teste@teste" && password == "trade4b")
             {
-              return await this.GenerateJwtToken(login, new IdentityUser() { Id = Guid.NewGuid().ToString(), Email = login });
-                
+                // return Ok(new { token = await GenerateJwtToken(login, new IdentityUser() { Email = login, UserName = login }) });
+                return Ok(new { token = BuildToken() });
             }
-            return Ok("Usuario ou senha invalidos");           
+            return BadRequest("Usuario ou senha invalidos");
+        }
+
+
+        private string BuildToken()
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(_configuration["JwtIssuer"],
+              _configuration["JwtIssuer"],
+              expires: DateTime.Now.AddMinutes(30),
+              signingCredentials: creds);
+
+            
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private UserModel Authenticate(LoginModel login)
+        {
+            UserModel user = null;
+
+            if (login.Username == "mario" && login.Password == "secret")
+            {
+                user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
+            }
+            return user;
+        }
+
+        public class LoginModel
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
+
+        private class UserModel
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public DateTime Birthdate { get; set; }
         }
 
         private async Task<object> GenerateJwtToken(string email, IdentityUser user)
@@ -63,7 +101,7 @@ namespace Open.Social.UI.Controllers.API
                 signingCredentials: creds
             );
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
-          //  return new JwtSecurityTokenHandler().WriteToken(token);
+            //  return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         [HttpPost]
@@ -86,13 +124,22 @@ namespace Open.Social.UI.Controllers.API
         [HttpPost]
         public Core.Model.User.User Create([FromBody] Core.Model.User.User user)
         {
-            user = new Core.Model.User.User() {
-                birth = DateTime.Now, created = DateTime.Now,
-                email = "marcelo.belchior@gmail.com", expire = DateTime.Now.AddYears(3),
-                password = "123", name = "marcelo", salt = Guid.NewGuid(), update = DateTime.Now };
+            user = new Core.Model.User.User()
+            {
+                birth = DateTime.Now,
+                created = DateTime.Now,
+                email = "marcelo.belchior@gmail.com",
+                expire = DateTime.Now.AddYears(3),
+                password = "123",
+                name = "marcelo",
+                salt = Guid.NewGuid(),
+                update = DateTime.Now
+            };
             _userManager.SaveOrUpdate(user);
             return user;
         }
-       
+
     }
+
+
 }

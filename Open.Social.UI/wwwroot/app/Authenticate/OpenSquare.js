@@ -9,9 +9,9 @@
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider.when('/', { templateUrl: '/OAuth/Login/Login', controller: 'AuthenticateController' });
+        $routeProvider.when('/OAuth', { templateUrl: '/OAuth/Login/Login', controller: 'AuthenticateController' });
         $routeProvider.when('/Register', { templateUrl: '/OAuth//Login/Register', controller: 'AuthenticateController' });
-        $routeProvider.otherwise({ redirectTo: '/' });
+        $routeProvider.otherwise({ redirectTo: '/OAuth' });
 
     //    $$locationProvider.hashPrefix('');
         $locationProvider.html5Mode({

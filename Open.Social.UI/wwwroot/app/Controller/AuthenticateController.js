@@ -2,16 +2,15 @@
 
 (function () {
     var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location','$cookies','UserService' ];
-    var AuthenticateController = function ($scope, $compile, $cookies, $window, $location,$cookies, UserService) {
+    var AuthenticateController = function ($scope, $compile, $cookies, $window, $location, $cookies, UserService) {
 
 
         
         $scope.Submit = function () {
             var data = { login: $scope.login, password: $scope.password };
             UserService.Autenticacao(data, function (response) {
-
                 $cookies.token = response.data.token;
-                  //  $window.location = "../../#/";
+                $window.location = "../../#/";
                 toastr.warning("Usuario ou senha invalidos");
             }, function (err) { toastr.error("Erro na autenticação."); });
                     
