@@ -3,12 +3,20 @@
 
     var application = angular.module('Trade4B', ['ngRoute', 'ngCookies', 'chieffancypants.loadingBar', 'ngAnimate']);
 
+    application.config(function ($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookie("token");
+        $httpProvider.defaults.withCredentials = true;
+
+    });
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', { templateUrl: '/Home/Index' });
         $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index' });
-        $routeProvider.when('/User', { templateUrl: '/Login/Login'});
+        $routeProvider.when('/User', { templateUrl: '/Login/Login' });
+        $routeProvider.when('/Admin', { templateUrl: '/Admin/Index' });
         //$routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
         //$routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
         //$routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });

@@ -1,16 +1,19 @@
-﻿
+﻿/// <reference path="../service/userservice.js" />
+
 (function () {
-    var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location', ];
-    var UserController = function ($scope, $compile, $cookies, $window, $location) {
-
+    var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location','UserService' ];
+    var UserController = function ($scope, $compile, $cookies, $window, $location, UserService) {
 
         
-        $scope.Submit = function () {
         
-                    toastr.error("Erro na autenticação.");
-               
-
-
+        $scope.Save = function () {    
+            var data = $scope.model;
+            UserService.Save(data, function (result) {
+               // toastr.sucess("Cadastro efetuado com sucesso");
+            }, function (e) {
+               //toastr.error(e);
+            });
+        
         }
         $scope.Registrar = function () {
             toastr.warning("Função desabilitada.")

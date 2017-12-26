@@ -1,0 +1,93 @@
+﻿<div class="panel-body" ng-controller="UserController">
+    <form ng-submit="Save()">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Nome Completo</label>
+                    <input type="text" placeholder="Nome Completo" ng-model="model.name" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>Nome Empresa Parceira</label>
+                    <input type="text" ng-model="model.company" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Endereço</label>
+                    <input type="text" ng-model="model.address" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>Complemento</label>
+                    <input type="text" ng-model="model.address2" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Password</label>
+                    <input type="password" ng-model="model.password" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>RePassword</label>
+                    <input type="password" ng-model="model.repassword" class="form-control">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Cidade</label>
+                    <input type="text" ng-model="model.cidadde" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Estado</label>
+                    <input type="text" ng-model="model.estado" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Cep:</label>
+                    <input type="text" ng-model="model.cep" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Email</label>
+                    <input type="text" readonly="readonly" ng-model="model.email" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>Your country</label>
+                    <select class="select">
+                        <option value="Brazil" selected="selected">Brasil</option>
+                        <option value="USA">United States of America</option>
+                        <option value="SP">Spain</option>
+                        <option value="other">...</option>
+                        <option value="uk">United Kingdom</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Telefone #</label>
+                    <input type="text" value="+99-99-9999-9999" class="form-control">
+                    <span class="help-block">+99-99-9999-9999</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="display-block">Upload profile image</label>
+                    <input type="file" class="file-styled">
+                    <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-right">
+            <button type="button" ng-click="Save()" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+        </div>
+    </form>
+</div>

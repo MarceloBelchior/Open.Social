@@ -4,7 +4,7 @@
 
     var injectParams = ['$http', '$rootScope'];
 
-    var UserService = function ($http, $rootScope) {
+    var adminuserservice = function ($http, $rootScope) {
         return {
             CheckEmail: function (data, successCallback, errorCallback) {
                 $http.post(global.service + '/api/User/CheckEmail?email=' + data.email)
@@ -12,11 +12,11 @@
             },
 
             Save: function (data, successCallback, errorCallback) {
-                $http.post('/api/Users/Create', data)
+                $http.post('/api/Admin/CreateOrUpdateUser', data)
                     .then(successCallback).catch(errorCallback);
             },
-            Autenticacao: function (data, successCallBack, errorCallBack) {
-                $http.post("/API/Users/Autenticacao?login=" + data.login + "&password=" + data.password).then(successCallBack).catch(errorCallBack);
+            getUser: function (successCallBack, errorCallBack) {
+                $http.get("/API/Admin/GetUsers").then(successCallBack).catch(errorCallBack);
             },
             AuthenticateSocialMedia: function (data, successCallBack, errorCallBack) {
                 $http.post("/Home/AuthenticateSocialMedia", data).success(successCallBack).error(errorCallBack);
@@ -30,9 +30,9 @@
         }
     };
 
-    UserService.$inject = injectParams;
+    adminuserservice.$inject = injectParams;
 
-    angular.module('Trade4B').service('UserService', UserService);
+    angular.module('Trade4B').service('adminuserservice', adminuserservice);
 
 }());
 

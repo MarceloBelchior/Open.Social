@@ -1,4 +1,5 @@
-﻿using Open.Social.AzureDocumentDb.Interface;
+﻿using AutoMapper;
+using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.AzureDocumentDb.Model;
 using Open.Social.Core.Interface;
 using Open.Social.Core.Model.TimeSheet;
@@ -17,15 +18,20 @@ namespace Open.Social.AzureDocumentDb.Manager
         private readonly IUserCollection _userCollection;
 
 
-        public UserManagerStore(IUserCollection  userCollection)
+        public UserManagerStore(IUserCollection userCollection)
         {
             _userCollection = userCollection;
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserEntity>());
         }
 
         public IEnumerable<User> Consult(Expression<Func<User, bool>> expression)
         {
-            throw new NotImplementedException();
+            var result = _userCollection.SetupBaseQuery<IUserCollection>().OrderByName().RunQuery();
+            var list = Mapper.Map<IList<UserEntity>, IList<User>>(result);
+            return list;
         }
+
+
 
         public void Remove(User entidade)
         {
@@ -34,7 +40,8 @@ namespace Open.Social.AzureDocumentDb.Manager
 
         public void SaveOrUpdate(User entity)
         {
-            throw new NotImplementedException();
+            UserEntity dto = Mapper.Map<UserEntity>(entity);
+            _userCollection.CreateAsync(dto);
         }
 
         public User SelectById(User entidade)

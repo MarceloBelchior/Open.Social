@@ -20,7 +20,8 @@
     "icomoon": "^1.0.0",
     "nicescroll": "^3.7.4",
     "drilldown": "^0.1.1",
-    "FileSaver": "^0.10.0"
+    "FileSaver": "^0.10.0",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "webpack": "^3.10.0",
