@@ -3,13 +3,12 @@
 
     var application = angular.module('Trade4B', ['ngRoute', 'ngCookies', 'chieffancypants.loadingBar', 'ngAnimate']);
 
-    application.config(function ($httpProvider) {
-        $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookie("token");
-        $httpProvider.defaults.withCredentials = true;
-
-    });
+    //application.config(function ($httpProvider) {
+    //    $httpProvider.defaults.useXDomain = true;
+    //    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //    $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookies('token');
+    //    $httpProvider.defaults.withCredentials = true;
+    //});
 
     application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
@@ -73,7 +72,7 @@
                 responseError: function (rejection) {
 
                     if (rejection.status == 401) {
-                        window.location = "/404";
+                        window.location = "/OAuth/Login/Index";
                     }
                     // Return the promise rejection.
                     return $q.reject(rejection);
@@ -81,6 +80,28 @@
             };
         });
     });
+
+    function AuthInterceptor($location, AuthService, $q) {
+        return {
+            request: function (config) {
+                config.headers = config.headers || {};
+
+                if (AuthService.getToken()) {
+                    config.headers['Authorization'] = 'Bearer ' + AuthService.getToken();
+                }
+
+                return config;
+            },
+
+            responseError: function (response) {
+                if (response.status === 401 || response.status === 403) {
+                    $location.path('/signin');
+                }
+
+                return $q.reject(response);
+            }
+        }
+    }
 
 
 }());

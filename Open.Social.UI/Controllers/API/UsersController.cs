@@ -1,37 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Open.Social.UI.Controllers.API
 {
     [Produces("application/json")]
     [Route("api/Users/[action]")]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
+
         public readonly Interface.IUserManager _userManager;
-        public UsersController(Interface.IUserManager userManager)
+        private readonly IConfiguration _configuration;
+
+        public UsersController(Interface.IUserManager userManager, IConfiguration configuration)
         {
             _userManager = userManager;
+            _configuration = configuration;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Autenticacao(string login, string password)
+        public async Task<object> Autenticacao(string login, string password)
         {
             if (login == "teste@teste" && password == "trade4b")
             {
-                var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, "bob") }, CookieAuthenticationDefaults.AuthenticationScheme));
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, user);
-                return Ok(true);
+              return await this.GenerateJwtToken(login, new IdentityUser() { Id = Guid.NewGuid().ToString(), Email = login });
+                
             }
             return Ok("Usuario ou senha invalidos");           
+        }
+
+        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));
+
+            var token = new JwtSecurityToken(
+                _configuration["JwtIssuer"],
+                _configuration["JwtIssuer"],
+                claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+          //  return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         [HttpPost]

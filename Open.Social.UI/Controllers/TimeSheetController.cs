@@ -12,5 +12,9 @@ namespace Open.Social.UI.Controllers
         {
             return View();
         }
+        public IActionResult AddTimeSheet()
+        {
+            return View();
+        }
     }
 }

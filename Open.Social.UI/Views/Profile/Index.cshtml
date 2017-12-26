@@ -1,0 +1,81 @@
+﻿	<!-- Page container -->
+<div class="page-container" ng-controller="AdminUserController" ng-init="init()">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Row toggler -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Administração de Usuarios</h5>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                            <li><a data-action="add"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    Abaixo listagem da administração de usuarios do sistema.<code>Habilitar e desabilitar</code>.
+                </div>
+
+                <table class="table table-togglable table-hover">
+                    <thead>
+                        <tr>
+                            <th data-hide="phone">Nome</th>
+                            <th data-toggle="true">Email</th>
+                            <th data-hide="phone,tablet">Cadastro</th>
+                            <th data-hide="phone,tablet">DOB</th>
+                            <th data-hide="phone">Status</th>
+                            <th class="text-center" style="width: 30px;"><i class="icon-menu-open2"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in listUser | limitTo:10">
+                            <td>{{ user.name }}</td>
+                            <td><a href="/#/Admin">{{user.email}}</a></td>
+                            <td>{{ user.created }}</td>
+                            <td>{{ user.birth }}</td>
+                            <td><span class="label label-success">Active</span></td>
+                            <td class="text-center">
+                                <ul class="icons-list">
+                                    <li class="dropdown">
+                                        <a href="/#/Admin" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="/#/Admin"><i class="icon-file-pdf"></i> Gear nova senha.</a></li>
+                                            <li><a href="/#/Admin"><i class="icon-file-excel"></i> Bloquear Usuario</a></li>
+                                            <li><a href="/#/Admin"><i class="icon-file-word"></i> Enviar notificação.</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="text-center content-group-lg pt-20">
+                <ul class="pagination">
+                    <li class="disabled"><a href="/#/Admin"><i class="icon-arrow-small-left"></i></a></li>
+                    <li class="active"><a href="/#/Admin">1</a></li>
+                    <li><a href="/#/Admin">2</a></li>
+                    <li><a href="/#/Admin">3</a></li>
+                    <li><a href="/#/Admin">4</a></li>
+                    <li><a href="/#/Admin">5</a></li>
+                    <li><a href="/#/Admin"><i class="icon-arrow-small-right"></i></a></li>
+                </ul>
+            </div>
+            <!-- /pagination -->
+            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal_form_vertical">Adicionar Novo Usuario <i class="icon-play3 position-right"></i></button>
+            <!-- /row toggler -->
+        </div>
+    </div>
+</div>
+<div ng-include="'./Admin/AddUser'"></div>

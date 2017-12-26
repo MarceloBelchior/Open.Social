@@ -12,8 +12,13 @@
         $routeProvider.when('/', { templateUrl: '/OAuth/Login/Login', controller: 'AuthenticateController' });
         $routeProvider.when('/Register', { templateUrl: '/OAuth//Login/Register', controller: 'AuthenticateController' });
         $routeProvider.otherwise({ redirectTo: '/' });
-        $locationProvider.html5Mode(false);
-        $locationProvider.hashPrefix = '#';
+
+    //    $$locationProvider.hashPrefix('');
+        $locationProvider.html5Mode({
+            enabled: false,
+            requireBase: false
+        })
+     //   $locationProvider.hashPrefix = '#';
     }]);
     application.config(function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = true;
