@@ -24,6 +24,13 @@ namespace Open.Social.UI.Controllers.API
             Expression<Func<User, bool>> where = m => m.id != Guid.Empty;
             return _userManager.Consult(where);
         }
+
+        [HttpPost]
+        public async Task<object> RemoveUser([FromBody]User user)
+        {
+            _userManager.Remove(user);
+            return Ok();
+        }
         [HttpPost]
         public User CreateOrUpdateUser([FromBody]User user)
         {

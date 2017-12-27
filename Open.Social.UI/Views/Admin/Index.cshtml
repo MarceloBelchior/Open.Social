@@ -35,9 +35,9 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="user in listUser | limitTo:10">
-                            <td>{{ user.name }}</td>
+                            <td ng-click="Edit(user)">{{ user.name }}</td>
                             <td><a href="/#/Admin">{{user.email}}</a></td>
-                            <td>{{ user.created }}</td>
+                            <td>{{ user.created  }}</td>
                             <td>{{ user.birth }}</td>
                             <td><span class="label label-success">Active</span></td>
                             <td class="text-center">
@@ -50,6 +50,7 @@
                                             <li><a href="/#/Admin"><i class="icon-file-pdf"></i> Gear nova senha.</a></li>
                                             <li><a href="/#/Admin"><i class="icon-file-excel"></i> Bloquear Usuario</a></li>
                                             <li><a href="/#/Admin"><i class="icon-file-word"></i> Enviar notificação.</a></li>
+                                            <li><a ng-click="Remove(user)"><i class="icon-file-word"></i> Remover Usuario.</a></li>
                                         </ul>
                                     </li>
                                 </ul>

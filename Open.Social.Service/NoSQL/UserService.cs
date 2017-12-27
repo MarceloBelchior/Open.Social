@@ -17,20 +17,27 @@ namespace Open.Social.Service.NoSQL
 
         }
 
-        public bool Autenticate(User entidade)
+        public bool Autenticate(User user)
         {
-            Utils.Authenticate.Authenticate.LogOn(entidade, 3600);
-            return true;
+
+            var entity = _userManager.SelectByLogin(user);
+            if (entity == null)
+                return false;
+            string password = new Utils.Cryptografia.Cryptography().CypherValueByProjectConfiguration(user.password, entity.salt.ToString());
+            if (entity.password == password)
+                return true;
+            return false;
         }
+        
 
         public IEnumerable<User> Consult(Expression<Func<User, bool>> expression)
         {
            return  _userManager.Consult(expression);
         }
 
-        public void Remove(User entidade)
+        public void Remove(User user)
         {
-            throw new NotImplementedException();
+            _userManager.Remove(user);
         }
 
         public void SaveOrUpdate(User entity)
@@ -43,9 +50,13 @@ namespace Open.Social.Service.NoSQL
             _userManager.SaveOrUpdate(entity);
         }
 
-        public User SelectById(User entidade)
+        public User SelectById(User user)
         {
-            throw new NotImplementedException();
+            return _userManager.SelectById(user);
+        }
+        public User SelectByLogin(User user)
+        {
+            return _userManager.SelectByLogin(user);
         }
     }
 }

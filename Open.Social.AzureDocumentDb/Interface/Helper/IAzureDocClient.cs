@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Documents.Client;
 
-namespace Open.Social.AzureDocumentDb.Interface
+namespace Open.Social.AzureDocumentDb.Interface.Helper
 {
     public interface IAzureDocClient
     {

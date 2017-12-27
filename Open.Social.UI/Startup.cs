@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -9,7 +10,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,40 +46,81 @@ namespace Painel
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-                  
-            // ===== Add Jwt Authentication ========
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //})
+            //.AddCookie(options =>
+            //   {
+            //       options.LoginPath = "/OAuth/Login/index";
+
+            //   });
+
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
-            services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-                })
-                .AddCookie(opt =>
+
+            services.AddCors(config =>
+            {
+                var policy = new CorsPolicy();
+                policy.Headers.Add("*");
+                policy.Methods.Add("*");
+                policy.Origins.Add("*");
+                policy.SupportsCredentials = true;
+                config.AddPolicy("policy", policy);
+            });
+
+
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+                    .RequireAuthenticatedUser().Build());
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    opt.LoginPath = Configuration["PathLogin"];
-                })
-                .AddJwtBearer(cfg =>
-                {
-                    cfg.RequireHttpsMetadata = false;
-                    cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidIssuer = Configuration["JwtIssuer"],
-                        ValidAudience = Configuration["JwtIssuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
-                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
-                    };
-                });
-                
-       
+                    IssuerSigningKey = new RsaSecurityKey(new RSACryptoServiceProvider(2048).ExportParameters(true)),
+                    ValidAudience = Configuration["JwtIssuer"],
+                    ValidIssuer = Configuration["JwtIssuer"],
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromMinutes(0)
+                };
+            });
+
+
+            //services
+            //    .AddAuthentication(options =>
+            //    {
+            //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            //    })
+            //    .AddJwtBearer(cfg =>
+            //    {
+            //        cfg.RequireHttpsMetadata = false;
+            //        cfg.SaveToken = true;
+            //        cfg.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidIssuer = Configuration["JwtIssuer"],
+            //            ValidAudience = Configuration["JwtIssuer"],
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
+            //            ClockSkew = TimeSpan.Zero // remove delay of token when expire
+            //        };
+            //    })
+            //    .AddCookie(opt => {
+            //        opt.LoginPath = Configuration["PathLogin"];
+            //    });
             services.AddMvc();
-
-
             services.AddOptions();
-
             services.Configure<DocumentDbConfig>(Configuration.GetSection("DocumentDb"));
             services.AddScoped(cfg => cfg.GetService<IOptionsSnapshot<DocumentDbConfig>>().Value);
             services.AddMvc();
@@ -92,23 +136,6 @@ namespace Painel
             return new AutofacServiceProvider(this.ApplicationContainer);
         }
 
-
-        private static Task OnRedirectToLogin(RedirectContext<CookieAuthenticationOptions> context)
-        {
-            // your logic may vary, this logic should reflect
-            //    whichever pattern distinguishes this as an api request 
-            if (context.Request.Path.StartsWithSegments("/api"))
-            {
-                // override the status code
-                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                return Task.CompletedTask;
-            }
-
-            // all other requests we'll assume should redirect to a login page
-            context.Response.Redirect(context.RedirectUri);
-            return Task.CompletedTask;
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -119,7 +146,7 @@ namespace Painel
             }
             else
             {
-                app.UseExceptionHandler("/OAuth/Login/Index");
+                app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
             app.UseAuthentication();

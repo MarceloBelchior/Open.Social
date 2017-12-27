@@ -31,11 +31,17 @@ namespace Open.Social.AzureDocumentDb.Manager
             return list;
         }
 
-
-
-        public void Remove(User entidade)
+        public User SelectByLogin(User user)
         {
-            throw new NotImplementedException();
+            UserEntity dto = _userCollection.SetupBaseQuery<IUserCollection>().WhereByEmail(user.email).RunQuery().FirstOrDefault();
+            return Mapper.Map<User>(dto);
+        }
+
+
+
+        public void Remove(User user)
+        {
+            _userCollection.DeleteAsync(user.id.ToString());
         }
 
         public void SaveOrUpdate(User entity)
@@ -44,9 +50,9 @@ namespace Open.Social.AzureDocumentDb.Manager
             _userCollection.CreateAsync(dto);
         }
 
-        public User SelectById(User entidade)
+        public User SelectById(User user)
         {
-            throw new NotImplementedException();
+            return Mapper.Map<User>(_userCollection.GetById(user.id));
         }
     }
 }

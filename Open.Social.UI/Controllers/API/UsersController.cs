@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Open.Social.Core.Model.User;
 
 namespace Open.Social.UI.Controllers.API
 {
@@ -33,12 +34,17 @@ namespace Open.Social.UI.Controllers.API
         [HttpPost, AllowAnonymous]
         public async Task<object> Autenticacao(string login, string password)
         {
-            if (login == "teste@teste" && password == "trade4b")
-            {
-                // return Ok(new { token = await GenerateJwtToken(login, new IdentityUser() { Email = login, UserName = login }) });
-                return Ok(new { token = BuildToken() });
-            }
+            var entity = _userManager.Authenticate(new Core.Model.User.User() { email = login, password = password });
+            if (entity != null)
+                return Ok(entity);
             return BadRequest("Usuario ou senha invalidos");
+        }
+
+        [HttpPost]
+        public async Task<object> RemoveUser(User user)
+        {
+            _userManager.Remove(user);
+            return Ok();
         }
 
 

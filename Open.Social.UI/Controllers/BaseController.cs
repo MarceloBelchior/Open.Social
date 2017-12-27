@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Open.Social.UI.Controllers
 {
-   [Authorize]
+   // [Authorize("Bearer")]
     public abstract class BaseController : Controller
     {
        

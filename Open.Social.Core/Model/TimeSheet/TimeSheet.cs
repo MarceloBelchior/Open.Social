@@ -13,7 +13,7 @@ namespace Open.Social.Core.Model.TimeSheet
         public DateTime ExtendInit { get; set; }
         public DateTime ExtendEnd { get; set; }
         public long CliendId { get; set; }
-        public long UserId { get; set; }
+        public Guid UserId { get; set; }
         public long ProjectId { get; set; }
         public string Comments { get; set; }
         public Guid reg { get; set; }

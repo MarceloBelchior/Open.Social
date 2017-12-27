@@ -33,6 +33,8 @@ gulp.task('copy-files', function () {
     gulp.src('./node_modules/nicescroll/dist/jquery.nicescroll.min.js').pipe(gulp.dest('./wwwroot/script/'));
     gulp.src('./node_modules/nicescroll/dist/zoomico.png').pipe(gulp.dest('./wwwroot/script/'));
     gulp.src('./node_modules/jquery.cookie/jquery.cookie.js').pipe(gulp.dest('./wwwroot/script/'));
+    gulp.src('./node_modules/bootstrap-datepaginator/dist/*').pipe(gulp.dest('./wwwroot/script/'));
+    gulp.src('./node_modules/bootstrap-datepicker/dist/js/*').pipe(gulp.dest('./wwwroot/script/'));
     
     gulp.src('./node_modules/icomoon/style.css').pipe(gulp.dest('./wwwroot/css/icomoon/'));
     gulp.src('./node_modules/icomoon/fonts/*').pipe(gulp.dest('./wwwroot/css/icomoon/fonts/'));

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Open.Social.AzureDocumentDb.Collection;
 using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Interface.Helper;
 using Open.Social.AzureDocumentDb.Manager;
 using Open.Social.Core.Interface;
 using Open.Social.Core.Model.config;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Open.Social.AzureDocumentDb.IoC
 {
-    public class AutofacModule : Module
+    public partial class AutofacModule : Module
     {
         private const string TimeSheetCollection = "TimeSheetCollection";
         private const string UserCollection = "UserCollection";
@@ -47,6 +48,14 @@ namespace Open.Social.AzureDocumentDb.IoC
 
                 return collection;
             });
+            builder.Register(async c =>
+            {
+                var collection = new PartnerCollection(await c.Resolve<Task<IAzureDocDatabase>>(), "PartnerCollection");
+                await collection.InitializeAsync();
+
+                return collection;
+            });
+
 
             //Register a Task<CartCollection> that will resolve Task<IAzureDocDatabase> and Initialize the collection
             //builder.Register(async c =>
@@ -59,8 +68,9 @@ namespace Open.Social.AzureDocumentDb.IoC
 
             builder.Register(c => c.Resolve<Task<TimeSheetCollection>>().Result).As<ITimeSheetCollection>().SingleInstance();
             builder.Register(c => c.Resolve<Task<UserCollection>>().Result).As<IUserCollection>().SingleInstance();
+            builder.Register(c => c.Resolve<Task<PartnerCollection>>().Result).As<IPartnerCollection>().SingleInstance();
             //builder.Register(c => c.Resolve<Task<CartCollection>>().Result).As<ICartCollection>().SingleInstance();
-
+            builder.RegisterType<PartnerManagerStore>().As<IPartnerManagerStore>().SingleInstance();
             builder.RegisterType<TimeSheetManagerStore>().As<ITimeSheetManagerStore>().SingleInstance();
             builder.RegisterType<UserManagerStore>().As<IUserManagerStore>().SingleInstance();
             //builder.RegisterType<CartStorageManager>().As<ICartStorage>().SingleInstance();

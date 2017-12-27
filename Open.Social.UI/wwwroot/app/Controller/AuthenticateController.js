@@ -10,8 +10,7 @@
             var data = { login: $scope.login, password: $scope.password };
             UserService.Autenticacao(data, function (response) {
                 $cookies.token = response.data.token;
-                $window.location = "../../#/";
-                toastr.warning("Usuario ou senha invalidos");
+                $window.location = "./#/";
             }, function (err) { toastr.error("Erro na autenticação."); });
                     
                

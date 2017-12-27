@@ -4,9 +4,9 @@ using Open.Social.AzureDocumentDb.Model;
 
 namespace Open.Social.AzureDocumentDb.Collection
 {
-    public class TimeSheetCollection : CollectionBase<TimeSheetEntity>, ITimeSheetCollection
+    public class PartnerCollection : CollectionBase<PartnerEntity>, IPartnerCollection
     {
-        public TimeSheetCollection(IAzureDocDatabase database, string collectionName) : base(database, collectionName)
+        public PartnerCollection(IAzureDocDatabase database, string collectionName) : base(database, collectionName)
         {
         }
     }

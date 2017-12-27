@@ -4,24 +4,38 @@
     var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location','adminuserservice' ];
     var AdminUserController = function ($scope, $compile, $cookies, $window, $location, adminuserservice) {
         $scope.init = function () {
+            $scope.model = {};
             $scope.GetUser();
+            
         }
 
         
         $scope.SaveUser = function () {
-            var data = { name: $scope.model.nome, password: $scope.model.password, email: $scope.model.email };
+            var data = $scope.model;
             adminuserservice.Save(data, function (result) {
+                $('#modal_form_vertical').modal('close'); 
+                $scope.model = {};
                 $scope.GetUser();
-                toastr["info"]("Cadastro efetuado");
-                toastr["success"]("Cadastro efetuado");
-                toastr["error"]("Cadastro efetuado");
-                toastr["warning"]("Cadastro efetuado");
-                $('#modal_form_vertical').modal('toggle'); 
-            }, function (err) { toastr.error("Erro na autenticação."); });
+            }, function (err) { toastr.error("Erro na autenticação."); }
+                );
                     
                
 
 
+        }
+        $scope.Edit = function (data) {
+            $scope.model = data;
+            $('#modal_form_vertical').modal('show'); 
+            
+        }
+        $scope.Remove = function (data) {
+            adminuserservice.Remove(data, function (result) {
+                toastr["success"]("Removido o usuario da base de dados");
+                $scope.init();
+            }, function (error) {
+                toastr["warning"]("Não foi possivel remover o usuario do sistema");
+            }
+            );
         }
         $scope.GetUser = function () {
             adminuserservice.getUser(function (result) {

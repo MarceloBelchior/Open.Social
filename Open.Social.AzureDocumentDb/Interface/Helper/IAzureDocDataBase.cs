@@ -1,7 +1,7 @@
 ﻿using Microsoft.Azure.Documents.Client;
 using System.Threading.Tasks;
 
-namespace Open.Social.AzureDocumentDb.Interface
+namespace Open.Social.AzureDocumentDb.Interface.Helper
 {
     public interface IAzureDocDatabase
     {

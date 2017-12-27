@@ -4,11 +4,10 @@ using System.Text;
 
 namespace Open.Social.Core.Model.User
 {
-  public class Profile : EntidadeBase
+  public class state : EntidadeBase
     {
         public string name { get; set; }
-        public DateTime created { get; set; }
-
-       
+        public string sigla { get; set; }
+        public Country country { get; set; }
     }
 }

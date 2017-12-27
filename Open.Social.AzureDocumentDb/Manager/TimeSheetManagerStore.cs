@@ -1,4 +1,5 @@
-﻿using Open.Social.AzureDocumentDb.Interface;
+﻿using AutoMapper;
+using Open.Social.AzureDocumentDb.Interface;
 using Open.Social.AzureDocumentDb.Model;
 using Open.Social.Core.Interface;
 using Open.Social.Core.Model.TimeSheet;
@@ -18,6 +19,7 @@ namespace Open.Social.AzureDocumentDb.Manager
         public TimeSheetManagerStore(ITimeSheetCollection timeSheetCollection)
         {
             _timeSheetCollection = timeSheetCollection;
+            Mapper.Initialize(cfg => cfg.CreateMap<Core.Model.TimeSheet.TimeSheet, TimeSheetEntity>());
         }
 
         #region ICartStorage Methods
@@ -27,20 +29,7 @@ namespace Open.Social.AzureDocumentDb.Manager
             var entities = _timeSheetCollection
                 .SetupBaseQuery<ITimeSheetCollection>()
                 .RunQuery();
-
-            //You should use Automapper for this
-            return entities.Select(c => new Core.Model.TimeSheet.TimeSheet()
-            {
-                reg = c.Id,
-                BreakFestEnd = c.BreakFestEnd,
-                BreakFestIni = c.BreakFestIni,
-                CliendId = c.CliendId,
-                Comments = c.Comments,
-                IniDay = c.IniDay,
-                EndDay = c.EndDay,
-                ExtendEnd = c.ExtendEnd,
-                ExtendInit = c.ExtendInit
-            }).ToList();
+            return Mapper.Map<IList<TimeSheetEntity>, IList<TimeSheet>>(entities);
         }
 
         public TimeSheet GetById(Guid id)
@@ -69,20 +58,9 @@ namespace Open.Social.AzureDocumentDb.Manager
 
         public async Task CreateAsync(Core.Model.TimeSheet.TimeSheet entity)
         {
-            var timeSheet = new TimeSheetEntity
-            {
-               Id = entity.reg,
-                BreakFestEnd = entity.BreakFestEnd,
-                BreakFestIni = entity.BreakFestIni,
-                CliendId = entity.CliendId,
-                Comments = entity.Comments,
-                IniDay = entity.IniDay,
-                EndDay = entity.EndDay,
-                ExtendEnd = entity.ExtendEnd,
-                ExtendInit = entity.ExtendInit
-            };
+            TimeSheetEntity dto = Mapper.Map<TimeSheetEntity>(entity);
 
-            await _timeSheetCollection.CreateAsync(entity.Init());
+            await _timeSheetCollection.CreateAsync(dto);
         }
 
         public async Task UpdateAsync(Core.Model.TimeSheet.TimeSheet entity)

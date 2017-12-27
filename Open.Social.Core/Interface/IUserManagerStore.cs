@@ -8,10 +8,11 @@ namespace Open.Social.Core.Interface
 {
   public  interface IUserManagerStore
     {
-        void SaveOrUpdate(User entity);
+        void SaveOrUpdate(User user);
         IEnumerable<User> Consult(Expression<Func<User, bool>> expression);
-        void Remove(User entidade);
-        User SelectById(User entidade);
+        void Remove(User user);
+        User SelectById(User user);
+        User SelectByLogin(User user);
     }
 
 
@@ -22,5 +23,6 @@ namespace Open.Social.Core.Interface
         void Remove(User entidade);
         User SelectById(User entidade);
         Boolean Autenticate(User entidade);
+        User SelectByLogin(User user);
     }
 }

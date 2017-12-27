@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Interface.Helper;
 using Open.Social.Core.Model.config;
 using System.Threading.Tasks;
 

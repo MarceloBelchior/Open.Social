@@ -1,4 +1,5 @@
 ﻿using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Interface.Helper;
 using Open.Social.AzureDocumentDb.Model;
 using System.Linq;
 
@@ -13,6 +14,12 @@ namespace Open.Social.AzureDocumentDb.Collection
         {
             Query = Query.OrderBy(x => x.name);
             return this;
+        }
+        public IUserCollection WhereByEmail(string email)
+        {
+            Query = Query.Where(c => c.email == email);
+            return this;
+
         }
     }
 }

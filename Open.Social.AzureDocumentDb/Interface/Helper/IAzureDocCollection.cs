@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Open.Social.AzureDocumentDb.Interface
+namespace Open.Social.AzureDocumentDb.Interface.Helper
 {
     public interface IAzureDocCollection
     {

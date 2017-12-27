@@ -1,4 +1,5 @@
 ﻿using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Interface.Helper;
 using System;
 
 namespace Open.Social.AzureDocumentDb.Model
@@ -12,7 +13,7 @@ namespace Open.Social.AzureDocumentDb.Model
         public DateTime ExtendInit { get; set; }
         public DateTime ExtendEnd { get; set; }
         public long CliendId { get; set; }
-        public long UserId { get; set; }
+        public Guid UserId { get; set; }
         public long ProjectId { get; set; }
         public string Comments { get; set; }
 

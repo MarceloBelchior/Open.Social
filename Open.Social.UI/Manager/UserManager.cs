@@ -38,8 +38,9 @@ namespace Open.Social.UI.Manager
         }
         public User Authenticate(User entidade)
         {
-            var i = userService.Autenticate(entidade);
-            return entidade;
+            if (userService.Autenticate(entidade))
+                return this.userService.SelectByLogin(entidade);
+            return null;
         }
     }
 }

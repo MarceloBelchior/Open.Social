@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Azure.Documents.Client;
-using Open.Social.AzureDocumentDb.Interface;
+using Open.Social.AzureDocumentDb.Interface.Helper;
 using Open.Social.Core.Model.config;
 
 namespace Open.Social.AzureDocumentDb
@@ -13,6 +13,10 @@ namespace Open.Social.AzureDocumentDb
         public AzureDocClient(DocumentDbConfig documentDbConfig)
         {
             _documentDbConfig = documentDbConfig;
+        }
+
+        public AzureDocClient()
+        {
         }
 
         public DocumentClient Client => _client;

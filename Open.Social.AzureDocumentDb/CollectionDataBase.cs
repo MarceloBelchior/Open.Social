@@ -1,4 +1,4 @@
-﻿using Open.Social.AzureDocumentDb.Interface;
+﻿using Open.Social.AzureDocumentDb.Interface.Helper;
 using Open.Social.AzureDocumentDb.Model;
 using System.Threading.Tasks;
 

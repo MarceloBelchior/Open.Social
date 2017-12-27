@@ -14,6 +14,35 @@
             $scope.Model = {};
 
 
+            //// Initialize with options
+            //$('.daterange-predefined').daterangepicker(
+            //    {
+            //        startDate: moment().subtract(29, 'days'),
+            //        endDate: moment(),
+            //        minDate: '01/01/2014',
+            //        maxDate: '12/31/2016',
+            //        dateLimit: { days: 60 },
+            //        ranges: {
+            //            'Today': [moment(), moment()],
+            //            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            //            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            //            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            //            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            //            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            //        },
+            //        opens: 'left',
+            //        applyClass: 'btn-small bg-slate',
+            //        cancelClass: 'btn-small btn-default'
+            //    },
+            //    function (start, end) {
+            //        $('.daterange-predefined span').html(start.format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + end.format('MMMM D, YYYY'));
+            //        $.jGrowl('Date range has been changed', { header: 'Update', theme: 'bg-primary', position: 'center', life: 1500 });
+            //    }
+            //);
+
+            //// Display date format
+            //$('.daterange-predefined span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('MMMM D, YYYY'));
+
 
         }
         $scope.GetTimeSheet = function () {
@@ -114,8 +143,8 @@
 
             }
             //t += '\n\n Total de Horas :;' + $scope.SumMonth;
-            var blob = new Blob([t], { type: "text/txt;charset=utf-8" });
-            saveAs(blob, 'RelatorioHoras_OpenSquare.csv');
+        //    var blob = new Blob([t], { type: "text/txt;charset=utf-8" });
+         //   saveAs(blob, 'RelatorioHoras_OpenSquare.csv');
 
 
         }

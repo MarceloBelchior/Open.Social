@@ -31,9 +31,9 @@
     }]);
 
     application.config(function ($httpProvider) {
-        $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookie('token');
+        //$httpProvider.defaults.useXDomain = true;
+       // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        //$httpProvider.defaults.headers.common['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MTQzOTAxMTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3NjUiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNzY1In0.V7uK5J-CYert0hdYqk5DsU9qhhW7JMstXZy-ijEfB5M';
         $httpProvider.defaults.withCredentials = true;
     });
 

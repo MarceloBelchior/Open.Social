@@ -15,6 +15,11 @@
                 $http.post('/api/Admin/CreateOrUpdateUser', data)
                     .then(successCallback).catch(errorCallback);
             },
+
+            Remove: function (data, successCallback, errorCallback) {
+                $http.post('/api/Admin/RemoveUser', data)
+                    .then(successCallback).catch(errorCallback);
+            },
             getUser: function (successCallBack, errorCallBack) {
                 $http.get("/API/Admin/GetUsers").then(successCallBack).catch(errorCallBack);
             },
@@ -31,7 +36,7 @@
     };
 
     adminuserservice.$inject = injectParams;
-
+    
     angular.module('Trade4B').service('adminuserservice', adminuserservice);
 
 }());
