@@ -8,40 +8,40 @@
     var injectParams = ['$scope', '$rootScope', '$compile', '$cookieStore', 'TimeSheetFactory'];
     var TimeSheetController = function ($scope, $rootScope, $compile, $cookieStore, TimeSheetFactory) {
 
-        $scope.Init = function () {
+        $scope.init = function () {
 
             $scope.SumMonth = 0;
             $scope.Model = {};
 
 
-            //// Initialize with options
-            //$('.daterange-predefined').daterangepicker(
-            //    {
-            //        startDate: moment().subtract(29, 'days'),
-            //        endDate: moment(),
-            //        minDate: '01/01/2014',
-            //        maxDate: '12/31/2016',
-            //        dateLimit: { days: 60 },
-            //        ranges: {
-            //            'Today': [moment(), moment()],
-            //            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            //            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            //            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            //            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            //            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            //        },
-            //        opens: 'left',
-            //        applyClass: 'btn-small bg-slate',
-            //        cancelClass: 'btn-small btn-default'
-            //    },
-            //    function (start, end) {
-            //        $('.daterange-predefined span').html(start.format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + end.format('MMMM D, YYYY'));
-            //        $.jGrowl('Date range has been changed', { header: 'Update', theme: 'bg-primary', position: 'center', life: 1500 });
-            //    }
-            //);
+            // Initialize with options
+            $('.daterange-predefined').daterangepicker(
+                {
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment(),
+                    minDate: '01/01/2014',
+                    maxDate: '12/31/2199',
+                    dateLimit: { days: 60 },
+                    ranges: {
+                        'Hoje': [moment(), moment()],
+                        'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Ultimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                        'Ultimos 30 dias': [moment().subtract(29, 'days'), moment()],
+                        'Mes Atual': [moment().startOf('month'), moment().endOf('month')],
+                        'Mes Anterior': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    opens: 'left',
+                    applyClass: 'btn-small bg-slate',
+                    cancelClass: 'btn-small btn-default'
+                },
+                function (start, end) {
+                    $('.daterange-predefined span').html(start.format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + end.format('MMMM D, YYYY'));
+                    toastr["info"]("Novo range de data definido.");
+                }
+            );
 
-            //// Display date format
-            //$('.daterange-predefined span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('MMMM D, YYYY'));
+            // Display date format
+            $('.daterange-predefined span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('MMMM D, YYYY'));
 
 
         }
