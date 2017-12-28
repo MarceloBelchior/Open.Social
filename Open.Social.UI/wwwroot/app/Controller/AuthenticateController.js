@@ -1,15 +1,17 @@
 ﻿/// <reference path="../service/userservice.js" />
 
 (function () {
-    var injectParams = ['$scope', '$compile', '$cookies', '$window', '$location','$cookies','UserService' ];
-    var AuthenticateController = function ($scope, $compile, $cookies, $window, $location, $cookies, UserService) {
+    var injectParams = ['$scope','$rootScope', '$compile', '$cookies', '$window', '$location','$cookies','UserService' ];
+    var AuthenticateController = function ($scope,$rootScope, $compile, $cookies, $window, $location, $cookies, UserService) {
 
 
         
         $scope.Submit = function () {
             var data = { login: $scope.login, password: $scope.password };
             UserService.Autenticacao(data, function (response) {
-                $cookies.token = response.data.token;
+                localStorage.token = response.data.token.
+                //$rootScope.user = response.data ;       
+                // $.cookie("token") = response.data.token;
                 $window.location = "./#/";
             }, function (err) { toastr.error("Erro na autenticação."); });
                     

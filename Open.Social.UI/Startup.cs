@@ -60,65 +60,66 @@ namespace Painel
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
 
 
-            services.AddCors(config =>
-            {
-                var policy = new CorsPolicy();
-                policy.Headers.Add("*");
-                policy.Methods.Add("*");
-                policy.Origins.Add("*");
-                policy.SupportsCredentials = true;
-                config.AddPolicy("policy", policy);
-            });
+            //services.AddCors(config =>
+            //{
+            //    var policy = new CorsPolicy();
+            //    policy.Headers.Add("*");
+            //    policy.Methods.Add("*");
+            //    policy.Origins.Add("*");
+            //    policy.SupportsCredentials = true;
+            //    config.AddPolicy("policy", policy);
+            //});
 
 
-            services.AddAuthorization(auth =>
-            {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
-                    .RequireAuthenticatedUser().Build());
-            });
+            //services.AddAuthorization(auth =>
+            //{
+            //    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+            //        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+            //        .RequireAuthenticatedUser().Build());
+            //});
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters()
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters()
+            //    {
+            //        IssuerSigningKey = new RsaSecurityKey(new RSACryptoServiceProvider(2048).ExportParameters(true)),
+            //        ValidAudience = Configuration["JwtIssuer"],
+            //        ValidIssuer = Configuration["JwtIssuer"],
+            //        ValidateIssuerSigningKey = true,
+            //        ValidateLifetime = true,
+            //        ClockSkew = TimeSpan.FromMinutes(0)
+            //    };
+            //});
+
+
+            services
+                .AddAuthentication(options =>
                 {
-                    IssuerSigningKey = new RsaSecurityKey(new RSACryptoServiceProvider(2048).ExportParameters(true)),
-                    ValidAudience = Configuration["JwtIssuer"],
-                    ValidIssuer = Configuration["JwtIssuer"],
-                    ValidateIssuerSigningKey = true,
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.FromMinutes(0)
-                };
-            });
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-
-            //services
-            //    .AddAuthentication(options =>
-            //    {
-            //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            //    })
-            //    .AddJwtBearer(cfg =>
-            //    {
-            //        cfg.RequireHttpsMetadata = false;
-            //        cfg.SaveToken = true;
-            //        cfg.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidIssuer = Configuration["JwtIssuer"],
-            //            ValidAudience = Configuration["JwtIssuer"],
-            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
-            //            ClockSkew = TimeSpan.Zero // remove delay of token when expire
-            //        };
-            //    })
-            //    .AddCookie(opt => {
-            //        opt.LoginPath = Configuration["PathLogin"];
-            //    });
+                })
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = Configuration["JwtIssuer"],
+                        ValidAudience = Configuration["JwtIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                    };
+                })
+                .AddCookie(opt =>
+                {
+                    opt.LoginPath = Configuration["PathLogin"];
+                });
             services.AddMvc();
             services.AddOptions();
             services.Configure<DocumentDbConfig>(Configuration.GetSection("DocumentDb"));
@@ -149,6 +150,7 @@ namespace Painel
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+         
             app.UseAuthentication();
             app.UseMvc(routes =>
             {

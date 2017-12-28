@@ -40,19 +40,8 @@ namespace Open.Social.AzureDocumentDb.Manager
                 .RunQuery()
                 .FirstOrDefault();
 
-            return new Core.Model.TimeSheet.TimeSheet()
-            {
-                reg = entity.Id,
-                BreakFestEnd = entity.BreakFestEnd,
-                BreakFestIni = entity.BreakFestIni,
-                CliendId = entity.CliendId,
-                Comments = entity.Comments,
-                IniDay = entity.IniDay,
-                EndDay = entity.EndDay,
-                ExtendEnd = entity.ExtendEnd,
-                ExtendInit = entity.ExtendInit
-
-            };
+            TimeSheet dto = Mapper.Map<TimeSheet>(entity);
+            return dto;
         }
 
 
@@ -65,7 +54,8 @@ namespace Open.Social.AzureDocumentDb.Manager
 
         public async Task UpdateAsync(Core.Model.TimeSheet.TimeSheet entity)
         {
-            await _timeSheetCollection.UpdateAsync(entity, entity.reg.ToString());
+            TimeSheetEntity dto = Mapper.Map<TimeSheetEntity>(entity);
+            await _timeSheetCollection.UpdateAsync(entity,entity.id.ToString());
         }
 
         public async Task DeleteAsync(Guid cartId)

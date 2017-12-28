@@ -36,10 +36,16 @@ namespace Open.Social.UI.Manager
         {
             return this.userService.SelectById(entidade);
         }
-        public User Authenticate(User entidade)
+        public User Authenticate(User user)
         {
-            if (userService.Autenticate(entidade))
-                return this.userService.SelectByLogin(entidade);
+            if (userService.Autenticate(user))
+            {
+             User  entity =  this.userService.SelectByLogin(user);
+                entity.salt = Guid.Empty;
+                entity.password = null;
+                return entity;
+
+            }
             return null;
         }
     }

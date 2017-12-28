@@ -19,7 +19,7 @@ using Open.Social.Core.Model.User;
 namespace Open.Social.UI.Controllers.API
 {
     [Produces("application/json")]
-    [Route("api/Users/[action]")]
+    [Route("api/timesheet/[action]")]
     public class TimeSheetController : BaseController
     {
 
@@ -36,18 +36,12 @@ namespace Open.Social.UI.Controllers.API
 
 
         [HttpPost]
-        public async Task<object> AddOrUpdate([FromBody]TimeSheet timeSheet)
+        public async Task<object> AddOrUpdate([FromBody]TimeSheet timeSheet,[FromBody]User user)
         {
-            if (timeSheet.id == Guid.Empty)
-                await _timeSheetManager.CreateAsync(timeSheet);
-            else
-                await _timeSheetManager.UpdateAsync(timeSheet);
+
+            await _timeSheetManager.SaveOrUpdate(timeSheet, user);
             return Ok();
         }
-
-
-
-
 
         [HttpPost]
         public async Task<IEnumerable<Core.Model.TimeSheet.TimeSheet>> GetTimeSheet([FromBody]DateTime idateTime, DateTime dateTime, User user)
@@ -56,23 +50,7 @@ namespace Open.Social.UI.Controllers.API
             return null;
 
         }
-        [HttpPost]
-        public Core.Model.User.User Create([FromBody] Core.Model.User.User user)
-        {
-            user = new Core.Model.User.User()
-            {
-                birth = DateTime.Now,
-                created = DateTime.Now,
-                email = "marcelo.belchior@gmail.com",
-                expire = DateTime.Now.AddYears(3),
-                password = "123",
-                name = "marcelo",
-                salt = Guid.NewGuid(),
-                update = DateTime.Now
-            };
-            _userManager.SaveOrUpdate(user);
-            return user;
-        }
+
 
     }
 

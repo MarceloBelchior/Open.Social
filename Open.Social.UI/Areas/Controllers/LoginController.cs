@@ -17,11 +17,13 @@ namespace Open.Social.UI.Areas.Controllers
         {
             return View();
         }
-        public IActionResult Login(string login, string senha)
+        public IActionResult Login()
         {
 
             return View();
         }
+     
+
 
 
 

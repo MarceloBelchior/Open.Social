@@ -16,13 +16,9 @@ namespace Open.Social.Core.Model.TimeSheet
         public Guid UserId { get; set; }
         public long ProjectId { get; set; }
         public string Comments { get; set; }
-        public Guid reg { get; set; }
+        
 
-        public object Init()
-        {
-            reg = Guid.NewGuid();
-            return this;
-        }
+     
     }
 }
 

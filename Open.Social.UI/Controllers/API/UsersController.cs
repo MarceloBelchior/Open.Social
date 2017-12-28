@@ -14,11 +14,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Open.Social.Core.Model.User;
+using StackExchange.Redis;
 
 namespace Open.Social.UI.Controllers.API
 {
     [Produces("application/json")]
     [Route("api/Users/[action]")]
+   // [Authorize("Bearer")]
     public class UsersController : BaseController
     {
 
@@ -36,7 +38,10 @@ namespace Open.Social.UI.Controllers.API
         {
             var entity = _userManager.Authenticate(new Core.Model.User.User() { email = login, password = password });
             if (entity != null)
-                return Ok(entity);
+            {
+               return await GenerateJwtToken(entity);
+                //return Ok(entity);
+            }
             return BadRequest("Usuario ou senha invalidos");
         }
 
@@ -86,13 +91,13 @@ namespace Open.Social.UI.Controllers.API
             public DateTime Birthdate { get; set; }
         }
 
-        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
+        private async Task<object> GenerateJwtToken(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
+                new Claim(ClaimTypes.NameIdentifier, user.id.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
@@ -106,8 +111,15 @@ namespace Open.Social.UI.Controllers.API
                 expires: expires,
                 signingCredentials: creds
             );
-            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
-            //  return new JwtSecurityTokenHandler().WriteToken(token);
+            var tk = new JwtSecurityTokenHandler().WriteToken(token);
+            HttpContext.Response.Cookies.Append("token", tk, new CookieOptions() { Path = "/", Expires = expires});
+            HttpContext.Response.Cookies.Append("UserId", user.id.ToString(), new CookieOptions() { Path = "/", Expires = expires });
+            HttpContext.Response.Cookies.Append("UserName", user.name, new CookieOptions() { Path = "/", Expires = expires });
+            await HttpContext.AuthenticateAsync();
+            //var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, "bob") }, CookieAuthenticationDefaults.AuthenticationScheme));
+            //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal() {   });
+
+            return Ok(); 
         }
 
         [HttpPost]

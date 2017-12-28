@@ -20,10 +20,10 @@
                     .error(errorcallback);
             },
 
-            SaveOrUpDate: function (data, sucesscallback, errorcallback) {
-                $http.post(global.service + '/api/TimeSheet/SaveOrUpDate', data)
-                    .success(sucesscallback)
-                    .error(errorcallback);
+            AddOrUpdate: function (data, sucesscallback, errorcallback) {
+                $http.post('/api/timesheet/AddOrUpdate', data)
+                    .then(sucesscallback)
+                    .catch(errorcallback);
             },
             Remove: function (data, sucesscallback, errorcallback) {
                 $http.post(global.service + '/api/TimeSheet/Remove?timesheetId=' + data.timesheetId)

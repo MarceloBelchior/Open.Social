@@ -11,7 +11,8 @@
         $scope.init = function () {
 
             $scope.SumMonth = 0;
-            $scope.Model = {};
+            $scope.model = {};
+            
 
 
             // Initialize with options
@@ -48,7 +49,7 @@
         $scope.GetTimeSheet = function () {
             if ($scope.Data != undefined && $scope.Data.IniDate != undefined && $scope.Data.EndDate != undefined) {
                 var data = {
-                    IniDate: $scope.Data.IniDate.split('/')[2] + "/" + $scope.Data.IniDate.split('/')[1] + "/" + $scope.Data.IniDate.split('/')[0],
+                    IniDate: $scope.data.IniDate.split('/')[2] + "/" + $scope.Data.IniDate.split('/')[1] + "/" + $scope.Data.IniDate.split('/')[0],
                     EndDate: $scope.Data.EndDate.split('/')[2] + "/" + $scope.Data.EndDate.split('/')[1] + "/" + $scope.Data.EndDate.split('/')[0] + " " + "23:59"
                 }
                 TimeSheetFactory.GetTimeSheet(data, function (result) {
@@ -59,21 +60,23 @@
                 });
             }
         }
-        $scope.Save = function () {
-            if ($scope.Model.Data != undefined) {
-                var data = {
-                    IniDay: $scope.Model.Data.split('/')[2] + "/" + $scope.Model.Data.split('/')[1] + "/" + $scope.Model.Data.split('/')[0] + " " + $scope.Model.HoraIncio,
-                    EndDay: $scope.Model.Data.split('/')[2] + "/" + $scope.Model.Data.split('/')[1] + "/" + $scope.Model.Data.split('/')[0] + " " + $scope.Model.HoraFim,
-                    BreakFestIni: $scope.Model.Data.split('/')[2] + "/" + $scope.Model.Data.split('/')[1] + "/" + $scope.Model.Data.split('/')[0] + " " + $scope.Model.HoraAlmocoInicio,
-                    BreakFestEnd: $scope.Model.Data.split('/')[2] + "/" + $scope.Model.Data.split('/')[1] + "/" + $scope.Model.Data.split('/')[0] + " " + $scope.Model.HoraAlmocoFim,
-                    ExtendInit: $scope.Model.Data.split('/')[2] + "/" + $scope.Model.Data.split('/')[1] + "/" + $scope.Model.Data.split('/')[0],
-                    ExtendEnd: $scope.Model.Data.split('/')[2] + "/" + $scope.Model.Data.split('/')[1] + "/" + $scope.Model.Data.split('/')[0],
-                    CliendId: 1,
-                    UserId: $cookieStore.get('UserId'),
+        $scope.SaveTimeSheet = function () {
+            if ($scope.model.data != undefined) {
+                var lk = $scope.model.data.split('/')[2] + "/" + $scope.model.data.split('/')[1] + "/" + $scope.model.data.split('/')[0] ;
+                var data = { TimeSheet : {
+                    id : $scope.model.id,
+                    IniDay: lk + " " + $scope.model.horainicio,
+                    EndDay:  lk + " " + $scope.model.saida,
+                    BreakFestIni: lk+ " " + $scope.model.horainicioalmoco,
+                    BreakFestEnd: lk+ " " + $scope.model.horafimalmoco,
+                    ExtendInit: lk,
+                    ExtendEnd:lk,
+                    CliendId: $.cookie('UserId'),
+                    UserId: $.cookie('UserId'),
                     ProjectId: 1,
                     Status: 0
-                };
-                TimeSheetFactory.SaveOrUpDate(data,
+                }, User : { id : $.cookie('UserId'), name: $.cookie('name')  }};
+                TimeSheetFactory.AddOrUpdate(data,
                     function (result) {
                         toastr.success("Lançamento efetuado com sucesso.");
                         //     $scope.GetTimeSheet();
@@ -97,20 +100,20 @@
         $scope.Edit = function (timesheetId) {
             var data = { timesheetId: timesheetId };
             TimeSheetFactory.Edit(data, function (result) {
-                $scope.Model = {};
-                $scope.Model.Data = result.IniDay;
-                $scope.Model.HoraIncio = result.IniDay;
-                $scope.Model.HoraAlmocoInicio = result.BreakFestIni;
-                $scope.Model.HoraAlmocoFim = result.BreakFestEnd;
-                $scope.Model.HoraFim = result.EndDay;
-                $scope.Model.id = result.id;
+                $scope.model = {};
+                $scope.model.Data = result.IniDay;
+                $scope.model.HoraIncio = result.IniDay;
+                $scope.model.HoraAlmocoInicio = result.BreakFestIni;
+                $scope.model.HoraAlmocoFim = result.BreakFestEnd;
+                $scope.model.HoraFim = result.EndDay;
+                $scope.model.id = result.id;
                 toastr.success(result.id + " -> Carregado com sucesso");
             }, function (error) {
                 toastr.error(error);
             })
         }
         $scope.New = function () {
-            $scope.Model = {};
+            $scope.model = {};
         }
         $scope.timediff = function (/*Date*/ d1, /*Date*/ d2) {
             var date1 = new Date(d1);

@@ -16,7 +16,6 @@ namespace Open.Social.AzureDocumentDb.Model
         public Guid UserId { get; set; }
         public long ProjectId { get; set; }
         public string Comments { get; set; }
-
         public TimeSheetEntity Init()
         {
             return Init(Guid.NewGuid()) as TimeSheetEntity;

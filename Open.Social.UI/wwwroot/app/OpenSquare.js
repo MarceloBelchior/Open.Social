@@ -5,13 +5,12 @@
 
 
 
-    application.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-
-
+    application.config(['$routeProvider', '$locationProvider','$httpProvider', function ($routeProvider, $locationProvider,$httpProvider) {
         $routeProvider.when('/', { templateUrl: '/Home/Index' });
         $routeProvider.when('/TimeSheet', { templateUrl: '/TimeSheet/Index' });
         $routeProvider.when('/User', { templateUrl: '/Login/Login' });
         $routeProvider.when('/Admin', { templateUrl: '/Admin/Index' });
+        
         //$routeProvider.when('/User', { templateUrl: '/User/Index', controller: 'UserController' });
         //$routeProvider.when('/ProfileUser', { templateUrl: '/User/ProfileUser', controller: 'UserController' });
         //$routeProvider.when('/Profile', { templateUrl: '/Profile/Index', controller: 'ProfileController' });
@@ -28,33 +27,50 @@
             requireBase: false
         })
         $locationProvider.hashPrefix = '#';
+       $httpProvider.interceptors.push(function($q, $location) {
+            return {
+                    'responseError': function(response) {
+                if(response.status === 401 || response.status === 403) {
+                    window.location = "/OAuth/Login/Index";
+                    //$window.location = "./OAuth/Login/Index";
+                  //  $location.path('/OAuth/Login/Index');
+                }
+                return $q.reject(response);
+            }
+        };
+    });
     }]);
 
     application.config(function ($httpProvider) {
         //$httpProvider.defaults.useXDomain = true;
        // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        //$httpProvider.defaults.headers.common['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MTQzOTAxMTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3NjUiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNzY1In0.V7uK5J-CYert0hdYqk5DsU9qhhW7JMstXZy-ijEfB5M';
+        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' +  $.cookie('token');
+        $httpProvider.defaults.headers.common['WWW-Authenticate'] = 'Bearer ' +  $.cookie('token');
         $httpProvider.defaults.withCredentials = true;
     });
 
-    //application.run(['$rootScope', '$location', function ($rootScope, $location) {
-    //    $rootScope.$on('$routeChangeStart', function (evt, to, from) {
-    //        if (to.authorize === true) {
-    //            to.resolve = to.resolve || {};
-    //            if (!to.resolve.authorizationResolver) {
-    //                to.resolve.authorizationResolver = ["authservice", function (authservice) {
-    //                    return authservice.authorize();
-    //                }];
-    //            }
-    //        }
-    //    });
-    //    $rootScope.$on('$rootChangeError', function (evt, to, from, error) {
-    //        if (error instanceof AuthorizationError) {
-    //            $location.path('/#/Login').search('returnTo', to.originalPath);
-    //        }
-    //    });
-    //}
-    //]);
+    
+
+
+    application.run(['$rootScope', '$location', function ($rootScope, $location) {
+        
+        $rootScope.$on('$routeChangeStart', function (evt, to, from) {
+            if (to.authorize === true) {
+                to.resolve = to.resolve || {};
+                if (!to.resolve.authorizationResolver) {
+                    to.resolve.authorizationResolver = ["authservice", function (authservice) {
+                        return authservice.authorize();
+                    }];
+                }
+            }
+        });
+        $rootScope.$on('$rootChangeError', function (evt, to, from, error) {
+            if (error instanceof AuthorizationError) {
+                $location.path('/OAuth').search('returnTo', to.originalPath);
+            }
+        });
+    }
+    ]);
 
     application.config(function (cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = true;

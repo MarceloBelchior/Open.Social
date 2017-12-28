@@ -22,6 +22,7 @@ namespace Open.Social.AzureDocumentDb.Model
         public DateTime created { get; set; }
         public DateTime update { get; set; }
         public DateTime expire { get; set; }
+        public bool changepassword { get; set; }
 
         public UserEntity Init()
         {
