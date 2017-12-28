@@ -24,15 +24,15 @@ namespace Open.Social.UI.Manager
         {
             return _timeSheetService.GetById(id);
         }
-        public async Task CreateAsync(TimeSheet entity)
+        public async Task SaveOrUpdate(TimeSheet entity, Core.Model.User.User user)
         {
-            await _timeSheetService.CreateAsync(entity);
+            entity.UserId = user.id;
+            if (entity.id == Guid.Empty)
+                await _timeSheetService.CreateAsync(entity);
+            else
+                await _timeSheetService.UpdateAsync(entity);
         }
-
-        public Task UpdateAsync(TimeSheet entity)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task DeleteAsync(Guid cartId)
         {

@@ -10,8 +10,7 @@ namespace Open.Social.UI.Interface
 
         IList<Open.Social.Core.Model.TimeSheet.TimeSheet> GetAll();
         TimeSheet GetById(Guid id);
-        Task CreateAsync(Open.Social.Core.Model.TimeSheet.TimeSheet entity);
-        Task UpdateAsync(Open.Social.Core.Model.TimeSheet.TimeSheet entity);
+        Task SaveOrUpdate(TimeSheet entity, Core.Model.User.User user);
         Task DeleteAsync(Guid cartId);
 
     }
