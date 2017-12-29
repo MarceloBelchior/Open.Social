@@ -71,12 +71,12 @@ namespace Painel
             //});
 
 
-            //services.AddAuthorization(auth =>
-            //{
-            //    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-            //        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
-            //        .RequireAuthenticatedUser().Build());
-            //});
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+                    .RequireAuthenticatedUser().Build());
+            });
 
             //services.AddAuthentication(options =>
             //{
@@ -115,10 +115,6 @@ namespace Painel
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
-                })
-                .AddCookie(opt =>
-                {
-                    opt.LoginPath = Configuration["PathLogin"];
                 });
             services.AddMvc();
             services.AddOptions();

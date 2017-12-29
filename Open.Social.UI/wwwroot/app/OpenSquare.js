@@ -32,8 +32,8 @@
                     'responseError': function(response) {
                 if(response.status === 401 || response.status === 403) {
                     window.location = "/OAuth/Login/Index";
-                    //$window.location = "./OAuth/Login/Index";
-                  //  $location.path('/OAuth/Login/Index');
+                   // $window.location = "./OAuth/Login/Index";
+                   //$location.path('../OAuth/Login/Index');
                 }
                 return $q.reject(response);
             }
@@ -42,11 +42,11 @@
     }]);
 
     application.config(function ($httpProvider) {
-        //$httpProvider.defaults.useXDomain = true;
-       // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' +  $.cookie('token');
-        $httpProvider.defaults.headers.common['WWW-Authenticate'] = 'Bearer ' +  $.cookie('token');
-        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        delete $httpProvider.defaults.headers.common['Cookie'];
+        $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + $.cookie('token');
+        //$httpProvider.defaults.withCredentials = true;
     });
 
     
@@ -91,7 +91,7 @@
                 responseError: function (rejection) {
 
                     if (rejection.status == 401) {
-                        window.location = "/OAuth/Login/Index";
+                    //    window.location = "/OAuth/Login/Index";
                     }
                     // Return the promise rejection.
                     return $q.reject(rejection);

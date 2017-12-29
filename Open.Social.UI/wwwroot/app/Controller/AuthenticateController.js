@@ -9,9 +9,6 @@
         $scope.Submit = function () {
             var data = { login: $scope.login, password: $scope.password };
             UserService.Autenticacao(data, function (response) {
-                localStorage.token = response.data.token.
-                //$rootScope.user = response.data ;       
-                // $.cookie("token") = response.data.token;
                 $window.location = "./#/";
             }, function (err) { toastr.error("Erro na autenticação."); });
                     

@@ -9,9 +9,9 @@ using Open.Social.Core.Model.User;
 
 namespace Open.Social.UI.Controllers.API
 {
-    [Produces("application/json")]
+    
     [Route("api/Admin/[action]")]
-    public class AdminController : Controller
+    public class AdminController : BaseAPIController
     {
         private readonly Interface.IUserManager _userManager;
         public AdminController(Interface.IUserManager userManager)

@@ -15,15 +15,23 @@ namespace Open.Social.UI.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+           
 
+            return View();
+        }
+
+        public IActionResult Footer()
+        {
+            return View();
+        }
+        public IActionResult TopMenu()
+        {
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
+           
             return View();
         }
         public IActionResult MainMenu()

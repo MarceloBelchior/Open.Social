@@ -18,10 +18,9 @@ using StackExchange.Redis;
 
 namespace Open.Social.UI.Controllers.API
 {
-    [Produces("application/json")]
+
     [Route("api/Users/[action]")]
-   // [Authorize("Bearer")]
-    public class UsersController : BaseController
+    public class UsersController : BaseAPIController
     {
 
         public readonly Interface.IUserManager _userManager;
@@ -39,8 +38,7 @@ namespace Open.Social.UI.Controllers.API
             var entity = _userManager.Authenticate(new Core.Model.User.User() { email = login, password = password });
             if (entity != null)
             {
-               return await GenerateJwtToken(entity);
-                //return Ok(entity);
+                return await GenerateJwtToken(entity);
             }
             return BadRequest("Usuario ou senha invalidos");
         }
@@ -63,7 +61,7 @@ namespace Open.Social.UI.Controllers.API
               expires: DateTime.Now.AddMinutes(30),
               signingCredentials: creds);
 
-            
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -111,15 +109,8 @@ namespace Open.Social.UI.Controllers.API
                 expires: expires,
                 signingCredentials: creds
             );
-            var tk = new JwtSecurityTokenHandler().WriteToken(token);
-            HttpContext.Response.Cookies.Append("token", tk, new CookieOptions() { Path = "/", Expires = expires});
-            HttpContext.Response.Cookies.Append("UserId", user.id.ToString(), new CookieOptions() { Path = "/", Expires = expires });
-            HttpContext.Response.Cookies.Append("UserName", user.name, new CookieOptions() { Path = "/", Expires = expires });
-            await HttpContext.AuthenticateAsync();
-            //var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, "bob") }, CookieAuthenticationDefaults.AuthenticationScheme));
-            //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal() {   });
-
-            return Ok(); 
+            HttpContext.Response.Cookies.Append("token", new JwtSecurityTokenHandler().WriteToken(token), new CookieOptions { Path = "/", Expires = expires });
+            return Ok();
         }
 
         [HttpPost]

@@ -18,9 +18,9 @@ using Open.Social.Core.Model.User;
 
 namespace Open.Social.UI.Controllers.API
 {
-    [Produces("application/json")]
+    
     [Route("api/timesheet/[action]")]
-    public class TimeSheetController : BaseController
+    public class TimeSheetController : BaseAPIController
     {
 
         public readonly Interface.ITimeSheetManager _timeSheetManager;

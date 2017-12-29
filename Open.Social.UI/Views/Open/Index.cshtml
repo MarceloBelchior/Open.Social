@@ -16,6 +16,17 @@
     <link href="~/css/toastr/toastr.min.css" rel="stylesheet" />
 
 
+   
+
+
+
+</head>
+
+<body class="navbar-bottom navbar-top">
+    <div ng-include="'./Open/Body'">
+
+    </div>
+    <!-- Core JS files -->
     <script src="~/script/jquery.min.js"></script>
     <script src="~/script/jquery.cookie.js"></script>
     <script src="~/script/jquery-mask-plugin/jquery.mask.min.js"></script>
@@ -27,95 +38,10 @@
     <script src="~/script/js/plugins/pickers/daterangepicker.js"></script>
     <script src="~/script/toastr.min.js"></script>
 
-
-
-</head>
-
-<body class="navbar-bottom navbar-top">
-    <!-- Page header -->
-    <div class="page-header page-header-inverse">
-        <!-- Main navbar -->
-        <div class="navbar navbar-inverse navbar-transparent navbar-fixed-top">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html"><img src="./images/logo_light.png" alt=""></a>
-                <ul class="nav navbar-nav pull-right visible-xs-block">
-                    <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-                </ul>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-mobile">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Text link</a></li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-calendar3"></i>
-                            <span class="visible-xs-inline-block position-right">Icon link</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Text link</a></li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-cog3"></i>
-                            <span class="visible-xs-inline-block position-right">Icon link</span>
-                        </a>
-                    </li>
-                    <li class="dropdown dropdown-user">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="./images/image.png" alt="">
-                            <span>Marcelo Belchior</span>
-                            <i class="caret"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#"><i class="icon-user-plus"></i> Meu perfil</a></li>
-                            <li><a href="#"><i class="icon-coins"></i> Minhas compras</a></li>
-                            <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Mensagens</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><i class="icon-cog5"></i> Configurações</a></li>
-                            <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /main navbar -->
-        <!-- Page header content -->
-        <div ng-include="'/Home/Avatar'"></div>
-        <!-- /page header content -->
-        <!-- Second navbar -->
-        <div ng-include="'/Home/MainMenu'"></div>
-        <!-- /second navbar -->
-    </div>
-    <!-- /page header -->
-
-    <div ng-view></div>
-    <!-- Page container -->
-    <!-- /page container -->
-    <!-- Footer -->
-    <div class="navbar navbar-default navbar-fixed-bottom">
-        <ul class="nav navbar-nav visible-xs-block">
-            <li><a class="text-center collapsed" data-toggle="collapse" data-target="#footer"><i class="icon-circle-up2"></i></a></li>
-        </ul>
-        <div class="navbar-collapse collapse" id="footer">
-            <div class="navbar-text">
-                &copy; 2015. <a href="#" class="navbar-link">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" class="navbar-link" target="_blank">Eugene Kopyov</a>
-            </div>
-            <div class="navbar-right">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /page cont
-        <!-- Core JS files -->
-
-
     <script src="~/script/js/plugins/ui/nicescroll.min.js"></script>
     <script src="~/script/js/plugins/forms/selects/select2.min.js"></script>
     <script src="~/script/js/plugins/ui/drilldown.js"></script>
+
 
     <script src="~/script/js/plugins/forms/styling/uniform.min.js"></script>
     <script src="~/script/js/plugins/ui/fullcalendar/fullcalendar.min.js"></script>
@@ -129,12 +55,6 @@
     <script src="~/script/js/plugins/pickers/anytime.min.js"></script>
 
     <script src="~/script/js/plugins/pickers/pickadate/legacy.js"></script>
-
-
-
-
-
-
 
     <script src="~/script/angular.min.js"></script>
     <script src="~/script/angular-animate.min.js"></script>

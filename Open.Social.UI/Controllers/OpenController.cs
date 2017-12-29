@@ -18,5 +18,9 @@ namespace Open.Social.UI.Controllers
 
             return View();
         }
+        public IActionResult Body()
+        {
+            return View();
+        }
     }
 }
